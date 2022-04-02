@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mady/core/utils/consts.dart';
 import 'package:mady/core/utils/theme.dart';
+import 'package:mady/di/injection.dart';
 
 void main() {
+  configureDependencies();
   runApp(const MyApp());
 }
 
