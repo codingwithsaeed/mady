@@ -22,15 +22,20 @@ User _$UserFromJson(Map<String, dynamic> json) {
 class _$UserTearOff {
   const _$UserTearOff();
 
-  _User call(String uid, String name, String phone, String email, String lat,
-      String lng) {
+  _User call(
+      {required String uid,
+      required String name,
+      required String phone,
+      required String email,
+      required String lat,
+      required String lng}) {
     return _User(
-      uid,
-      name,
-      phone,
-      email,
-      lat,
-      lng,
+      uid: uid,
+      name: name,
+      phone: phone,
+      email: email,
+      lat: lat,
+      lng: lng,
     );
   }
 
@@ -148,27 +153,27 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? lng = freezed,
   }) {
     return _then(_User(
-      uid == freezed
+      uid: uid == freezed
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
               as String,
-      name == freezed
+      name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      phone == freezed
+      phone: phone == freezed
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String,
-      email == freezed
+      email: email == freezed
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      lat == freezed
+      lat: lat == freezed
           ? _value.lat
           : lat // ignore: cast_nullable_to_non_nullable
               as String,
-      lng == freezed
+      lng: lng == freezed
           ? _value.lng
           : lng // ignore: cast_nullable_to_non_nullable
               as String,
@@ -180,7 +185,12 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_User implements _User {
   const _$_User(
-      this.uid, this.name, this.phone, this.email, this.lat, this.lng);
+      {required this.uid,
+      required this.name,
+      required this.phone,
+      required this.email,
+      required this.lat,
+      required this.lng});
 
   factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
 
@@ -237,8 +247,13 @@ class _$_User implements _User {
 }
 
 abstract class _User implements User {
-  const factory _User(String uid, String name, String phone, String email,
-      String lat, String lng) = _$_User;
+  const factory _User(
+      {required String uid,
+      required String name,
+      required String phone,
+      required String email,
+      required String lat,
+      required String lng}) = _$_User;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 

@@ -20,6 +20,7 @@ void main() {
   });
 
   group('Testing api provider', () {
+    final tResp200 = Response('', 200);
     test('should throw [ServerException] on [TimeOutException] from Client',
         () async {
       when(client.post(any, body: anyNamed('body')))
@@ -43,6 +44,14 @@ void main() {
       final result = provider.post;
       expect(result(Uri.parse('uri'), params: {}),
           throwsA(const TypeMatcher<ServerException>()));
+    });
+
+    test('should return response if response statusCode is 200',
+        () async {
+      when(client.post(any, body: anyNamed('body')))
+          .thenAnswer((_) async => tResp200);
+      final result = await provider.post(Uri.parse('uri'), params: {});
+      expect(result, tResp200);
     });
   });
 }
