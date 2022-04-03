@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:injectable/injectable.dart';
 import 'package:mady/core/errors/exception.dart';
 import 'package:mady/core/network/api_provider.dart';
 import 'package:mady/features/login/data/models/login_model.dart';
@@ -9,6 +10,7 @@ abstract class LoginRemoteDatasource {
   Future<User> authenticate(Map<String, dynamic> params);
 }
 
+@Injectable(as: LoginRemoteDatasource)
 class LoginRemoteDatasourceImpl implements LoginRemoteDatasource {
   final ApiProvider _apiProvider;
 

@@ -1,9 +1,11 @@
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 import 'package:mady/core/errors/failure.dart';
 import 'package:mady/core/network/api_param.dart';
 import 'package:mady/features/login/domain/entities/user.dart';
 import 'package:mady/features/login/domain/repositories/login_repository.dart';
 
+@injectable
 class LoginUsecase {
   final LoginRepository _repository;
 

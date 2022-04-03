@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:mady/core/utils/consts.dart';
 import 'package:mady/core/utils/theme.dart';
 import 'package:mady/di/injection.dart';
+import 'package:mady/features/login/presentation/pages/login_page.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   configureDependencies();
   runApp(const MyApp());
 }
@@ -19,15 +21,7 @@ class MyApp extends StatelessWidget {
       supportedLocales: supportedLocales,
       title: 'مادی',
       theme: lightTheme,
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('مادی'),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          child: const Icon(Icons.add),
-        ),
-      ),
+      home: const LoginPage(),
     );
   }
 }

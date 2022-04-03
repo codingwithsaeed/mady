@@ -15,7 +15,7 @@ abstract class ApiProvider {
   Future<Response> post(Uri url, {required Map<String, dynamic> params});
 }
 
-@lazySingleton
+@LazySingleton(as: ApiProvider)
 class ApiProviderImpl implements ApiProvider {
   final Client _client;
 

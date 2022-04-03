@@ -5,6 +5,7 @@ final primaryColor = Colors.purple.shade800.material;
 final lightTheme = ThemeData(
     brightness: Brightness.light,
     fontFamily: 'vazir',
+    primaryColor: primaryColor,
     colorScheme: ColorScheme.fromSwatch(primarySwatch: primaryColor),
     scaffoldBackgroundColor: Colors.grey.shade200,
     textTheme: const TextTheme(

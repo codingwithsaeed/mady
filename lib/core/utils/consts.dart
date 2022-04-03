@@ -9,5 +9,4 @@ const localization = [
 
 const supportedLocales = [
   Locale('fa'),
-  Locale('en'),
 ];
