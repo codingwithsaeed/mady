@@ -30,15 +30,17 @@ class _$OfferTearOff {
       required String eTime,
       required String price,
       required String percent,
-      required String currentPercent,
+      required String currentPrice,
       required String picture,
       required String count,
       required String sid,
       required String storeName,
+      required String address,
       required String website,
       required String logo,
       required String lat,
-      required String lng}) {
+      required String lng,
+      required String distance}) {
     return _Offer(
       oid: oid,
       content: content,
@@ -47,15 +49,17 @@ class _$OfferTearOff {
       eTime: eTime,
       price: price,
       percent: percent,
-      currentPercent: currentPercent,
+      currentPrice: currentPrice,
       picture: picture,
       count: count,
       sid: sid,
       storeName: storeName,
+      address: address,
       website: website,
       logo: logo,
       lat: lat,
       lng: lng,
+      distance: distance,
     );
   }
 
@@ -76,15 +80,17 @@ mixin _$Offer {
   String get eTime => throw _privateConstructorUsedError;
   String get price => throw _privateConstructorUsedError;
   String get percent => throw _privateConstructorUsedError;
-  String get currentPercent => throw _privateConstructorUsedError;
+  String get currentPrice => throw _privateConstructorUsedError;
   String get picture => throw _privateConstructorUsedError;
   String get count => throw _privateConstructorUsedError;
   String get sid => throw _privateConstructorUsedError;
   String get storeName => throw _privateConstructorUsedError;
+  String get address => throw _privateConstructorUsedError;
   String get website => throw _privateConstructorUsedError;
   String get logo => throw _privateConstructorUsedError;
   String get lat => throw _privateConstructorUsedError;
   String get lng => throw _privateConstructorUsedError;
+  String get distance => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -103,15 +109,17 @@ abstract class $OfferCopyWith<$Res> {
       String eTime,
       String price,
       String percent,
-      String currentPercent,
+      String currentPrice,
       String picture,
       String count,
       String sid,
       String storeName,
+      String address,
       String website,
       String logo,
       String lat,
-      String lng});
+      String lng,
+      String distance});
 }
 
 /// @nodoc
@@ -131,15 +139,17 @@ class _$OfferCopyWithImpl<$Res> implements $OfferCopyWith<$Res> {
     Object? eTime = freezed,
     Object? price = freezed,
     Object? percent = freezed,
-    Object? currentPercent = freezed,
+    Object? currentPrice = freezed,
     Object? picture = freezed,
     Object? count = freezed,
     Object? sid = freezed,
     Object? storeName = freezed,
+    Object? address = freezed,
     Object? website = freezed,
     Object? logo = freezed,
     Object? lat = freezed,
     Object? lng = freezed,
+    Object? distance = freezed,
   }) {
     return _then(_value.copyWith(
       oid: oid == freezed
@@ -170,9 +180,9 @@ class _$OfferCopyWithImpl<$Res> implements $OfferCopyWith<$Res> {
           ? _value.percent
           : percent // ignore: cast_nullable_to_non_nullable
               as String,
-      currentPercent: currentPercent == freezed
-          ? _value.currentPercent
-          : currentPercent // ignore: cast_nullable_to_non_nullable
+      currentPrice: currentPrice == freezed
+          ? _value.currentPrice
+          : currentPrice // ignore: cast_nullable_to_non_nullable
               as String,
       picture: picture == freezed
           ? _value.picture
@@ -190,6 +200,10 @@ class _$OfferCopyWithImpl<$Res> implements $OfferCopyWith<$Res> {
           ? _value.storeName
           : storeName // ignore: cast_nullable_to_non_nullable
               as String,
+      address: address == freezed
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String,
       website: website == freezed
           ? _value.website
           : website // ignore: cast_nullable_to_non_nullable
@@ -205,6 +219,10 @@ class _$OfferCopyWithImpl<$Res> implements $OfferCopyWith<$Res> {
       lng: lng == freezed
           ? _value.lng
           : lng // ignore: cast_nullable_to_non_nullable
+              as String,
+      distance: distance == freezed
+          ? _value.distance
+          : distance // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -223,15 +241,17 @@ abstract class _$OfferCopyWith<$Res> implements $OfferCopyWith<$Res> {
       String eTime,
       String price,
       String percent,
-      String currentPercent,
+      String currentPrice,
       String picture,
       String count,
       String sid,
       String storeName,
+      String address,
       String website,
       String logo,
       String lat,
-      String lng});
+      String lng,
+      String distance});
 }
 
 /// @nodoc
@@ -252,15 +272,17 @@ class __$OfferCopyWithImpl<$Res> extends _$OfferCopyWithImpl<$Res>
     Object? eTime = freezed,
     Object? price = freezed,
     Object? percent = freezed,
-    Object? currentPercent = freezed,
+    Object? currentPrice = freezed,
     Object? picture = freezed,
     Object? count = freezed,
     Object? sid = freezed,
     Object? storeName = freezed,
+    Object? address = freezed,
     Object? website = freezed,
     Object? logo = freezed,
     Object? lat = freezed,
     Object? lng = freezed,
+    Object? distance = freezed,
   }) {
     return _then(_Offer(
       oid: oid == freezed
@@ -291,9 +313,9 @@ class __$OfferCopyWithImpl<$Res> extends _$OfferCopyWithImpl<$Res>
           ? _value.percent
           : percent // ignore: cast_nullable_to_non_nullable
               as String,
-      currentPercent: currentPercent == freezed
-          ? _value.currentPercent
-          : currentPercent // ignore: cast_nullable_to_non_nullable
+      currentPrice: currentPrice == freezed
+          ? _value.currentPrice
+          : currentPrice // ignore: cast_nullable_to_non_nullable
               as String,
       picture: picture == freezed
           ? _value.picture
@@ -311,6 +333,10 @@ class __$OfferCopyWithImpl<$Res> extends _$OfferCopyWithImpl<$Res>
           ? _value.storeName
           : storeName // ignore: cast_nullable_to_non_nullable
               as String,
+      address: address == freezed
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String,
       website: website == freezed
           ? _value.website
           : website // ignore: cast_nullable_to_non_nullable
@@ -327,13 +353,17 @@ class __$OfferCopyWithImpl<$Res> extends _$OfferCopyWithImpl<$Res>
           ? _value.lng
           : lng // ignore: cast_nullable_to_non_nullable
               as String,
+      distance: distance == freezed
+          ? _value.distance
+          : distance // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_Offer extends _Offer {
+class _$_Offer implements _Offer {
   const _$_Offer(
       {required this.oid,
       required this.content,
@@ -342,16 +372,17 @@ class _$_Offer extends _Offer {
       required this.eTime,
       required this.price,
       required this.percent,
-      required this.currentPercent,
+      required this.currentPrice,
       required this.picture,
       required this.count,
       required this.sid,
       required this.storeName,
+      required this.address,
       required this.website,
       required this.logo,
       required this.lat,
-      required this.lng})
-      : super._();
+      required this.lng,
+      required this.distance});
 
   factory _$_Offer.fromJson(Map<String, dynamic> json) =>
       _$$_OfferFromJson(json);
@@ -371,7 +402,7 @@ class _$_Offer extends _Offer {
   @override
   final String percent;
   @override
-  final String currentPercent;
+  final String currentPrice;
   @override
   final String picture;
   @override
@@ -381,6 +412,8 @@ class _$_Offer extends _Offer {
   @override
   final String storeName;
   @override
+  final String address;
+  @override
   final String website;
   @override
   final String logo;
@@ -388,10 +421,12 @@ class _$_Offer extends _Offer {
   final String lat;
   @override
   final String lng;
+  @override
+  final String distance;
 
   @override
   String toString() {
-    return 'Offer(oid: $oid, content: $content, date: $date, sTime: $sTime, eTime: $eTime, price: $price, percent: $percent, currentPercent: $currentPercent, picture: $picture, count: $count, sid: $sid, storeName: $storeName, website: $website, logo: $logo, lat: $lat, lng: $lng)';
+    return 'Offer(oid: $oid, content: $content, date: $date, sTime: $sTime, eTime: $eTime, price: $price, percent: $percent, currentPrice: $currentPrice, picture: $picture, count: $count, sid: $sid, storeName: $storeName, address: $address, website: $website, logo: $logo, lat: $lat, lng: $lng, distance: $distance)';
   }
 
   @override
@@ -407,15 +442,17 @@ class _$_Offer extends _Offer {
             const DeepCollectionEquality().equals(other.price, price) &&
             const DeepCollectionEquality().equals(other.percent, percent) &&
             const DeepCollectionEquality()
-                .equals(other.currentPercent, currentPercent) &&
+                .equals(other.currentPrice, currentPrice) &&
             const DeepCollectionEquality().equals(other.picture, picture) &&
             const DeepCollectionEquality().equals(other.count, count) &&
             const DeepCollectionEquality().equals(other.sid, sid) &&
             const DeepCollectionEquality().equals(other.storeName, storeName) &&
+            const DeepCollectionEquality().equals(other.address, address) &&
             const DeepCollectionEquality().equals(other.website, website) &&
             const DeepCollectionEquality().equals(other.logo, logo) &&
             const DeepCollectionEquality().equals(other.lat, lat) &&
-            const DeepCollectionEquality().equals(other.lng, lng));
+            const DeepCollectionEquality().equals(other.lng, lng) &&
+            const DeepCollectionEquality().equals(other.distance, distance));
   }
 
   @override
@@ -428,15 +465,17 @@ class _$_Offer extends _Offer {
       const DeepCollectionEquality().hash(eTime),
       const DeepCollectionEquality().hash(price),
       const DeepCollectionEquality().hash(percent),
-      const DeepCollectionEquality().hash(currentPercent),
+      const DeepCollectionEquality().hash(currentPrice),
       const DeepCollectionEquality().hash(picture),
       const DeepCollectionEquality().hash(count),
       const DeepCollectionEquality().hash(sid),
       const DeepCollectionEquality().hash(storeName),
+      const DeepCollectionEquality().hash(address),
       const DeepCollectionEquality().hash(website),
       const DeepCollectionEquality().hash(logo),
       const DeepCollectionEquality().hash(lat),
-      const DeepCollectionEquality().hash(lng));
+      const DeepCollectionEquality().hash(lng),
+      const DeepCollectionEquality().hash(distance));
 
   @JsonKey(ignore: true)
   @override
@@ -449,7 +488,7 @@ class _$_Offer extends _Offer {
   }
 }
 
-abstract class _Offer extends Offer {
+abstract class _Offer implements Offer {
   const factory _Offer(
       {required String oid,
       required String content,
@@ -458,16 +497,17 @@ abstract class _Offer extends Offer {
       required String eTime,
       required String price,
       required String percent,
-      required String currentPercent,
+      required String currentPrice,
       required String picture,
       required String count,
       required String sid,
       required String storeName,
+      required String address,
       required String website,
       required String logo,
       required String lat,
-      required String lng}) = _$_Offer;
-  const _Offer._() : super._();
+      required String lng,
+      required String distance}) = _$_Offer;
 
   factory _Offer.fromJson(Map<String, dynamic> json) = _$_Offer.fromJson;
 
@@ -486,7 +526,7 @@ abstract class _Offer extends Offer {
   @override
   String get percent;
   @override
-  String get currentPercent;
+  String get currentPrice;
   @override
   String get picture;
   @override
@@ -496,6 +536,8 @@ abstract class _Offer extends Offer {
   @override
   String get storeName;
   @override
+  String get address;
+  @override
   String get website;
   @override
   String get logo;
@@ -503,6 +545,8 @@ abstract class _Offer extends Offer {
   String get lat;
   @override
   String get lng;
+  @override
+  String get distance;
   @override
   @JsonKey(ignore: true)
   _$OfferCopyWith<_Offer> get copyWith => throw _privateConstructorUsedError;

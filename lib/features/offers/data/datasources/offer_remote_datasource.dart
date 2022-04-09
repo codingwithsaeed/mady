@@ -1,0 +1,25 @@
+import 'dart:convert';
+
+import 'package:mady/core/errors/exception.dart';
+import 'package:mady/core/network/api_provider.dart';
+import 'package:mady/features/offers/data/models/category_offers_list.dart';
+
+abstract class OfferRemoteDataSource {
+  Future<CategoryOffersList> getOffers(Map<String, dynamic> params);
+}
+
+class OfferRemoteDataSourceImpl implements OfferRemoteDataSource {
+  final ApiProvider _provider;
+
+  OfferRemoteDataSourceImpl(this._provider);
+
+  @override
+  Future<CategoryOffersList> getOffers(Map<String, dynamic> params) async {
+    try {
+      final result = await _provider.post(currentDataUrl, params: params);
+      return CategoryOffersList.fromJson(jsonDecode(result.body));
+    } on UnsupportedError catch (e) {
+      throw ServerException(message: e.message ?? "دریافت اطلاعات با خطا مواجه شد");
+    }
+  }
+}

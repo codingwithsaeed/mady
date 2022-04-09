@@ -112,8 +112,8 @@ class __$CategoryOffersListCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CategoryOffersList extends _CategoryOffersList {
-  const _$_CategoryOffersList({required this.offers}) : super._();
+class _$_CategoryOffersList implements _CategoryOffersList {
+  const _$_CategoryOffersList({required this.offers});
 
   factory _$_CategoryOffersList.fromJson(Map<String, dynamic> json) =>
       _$$_CategoryOffersListFromJson(json);
@@ -149,10 +149,9 @@ class _$_CategoryOffersList extends _CategoryOffersList {
   }
 }
 
-abstract class _CategoryOffersList extends CategoryOffersList {
+abstract class _CategoryOffersList implements CategoryOffersList {
   const factory _CategoryOffersList({required List<CategoryOffers> offers}) =
       _$_CategoryOffersList;
-  const _CategoryOffersList._() : super._();
 
   factory _CategoryOffersList.fromJson(Map<String, dynamic> json) =
       _$_CategoryOffersList.fromJson;

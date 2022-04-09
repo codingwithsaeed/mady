@@ -1,4 +1,7 @@
+// ignore_for_file: curly_braces_in_flow_control_structures
+
 import 'package:dartz/dartz.dart';
+import 'package:mady/core/errors/exception.dart';
 import 'package:mady/core/errors/failure.dart';
 import 'package:mady/core/network/api_param.dart';
 import 'package:mady/core/network/network_info.dart';
@@ -18,8 +21,15 @@ class OfferRepositoryImpl extends OfferRepository {
         _networkInfo = networkInfo;
 
   @override
-  Future<Either<Failure, List<CategoryOffers>>> getAllOffers(ApiParam params) {
-    // TODO: implement getAllOffers
-    throw UnimplementedError();
+  Future<Either<Failure, List<CategoryOffers>>> getAllOffers(
+      ApiParam params) async {
+    if (!(await _networkInfo.isConnected))
+      return Left(GeneralFailure(message: noInternt));
+    try {
+      final result = await _remoteDataSource.getOffers(params.value);
+      return Right(result.offers);
+    } on ServerException catch (e) {
+      return Left(GeneralFailure(message: e.message));
+    }
   }
 }
