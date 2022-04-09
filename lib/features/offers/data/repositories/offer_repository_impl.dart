@@ -1,6 +1,7 @@
 // ignore_for_file: curly_braces_in_flow_control_structures
 
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 import 'package:mady/core/errors/exception.dart';
 import 'package:mady/core/errors/failure.dart';
 import 'package:mady/core/network/api_param.dart';
@@ -10,6 +11,7 @@ import 'package:mady/features/offers/domain/entities/category_offers/category_of
 import '../../domain/repositories/offer_repository.dart';
 import '../datasources/offer_remote_datasource.dart';
 
+@Injectable(as: OfferRepository)
 class OfferRepositoryImpl extends OfferRepository {
   final OfferRemoteDataSource _remoteDataSource;
   final NetworkInfo _networkInfo;

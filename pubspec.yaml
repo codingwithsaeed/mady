@@ -28,6 +28,7 @@ dependencies:
   google_maps_flutter: ^2.1.2
   dropdown_button2: ^1.2.1
   image_picker: ^0.8.4+10
+  fancy_bottom_navigation: ^0.3.3
 
 dev_dependencies:
   flutter_test:

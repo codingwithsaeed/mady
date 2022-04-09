@@ -1,5 +1,8 @@
+// ignore_for_file: curly_braces_in_flow_control_structures
+
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:mady/core/errors/failure.dart';
 import 'package:mady/core/network/api_param.dart';
 import 'package:mady/features/offers/domain/entities/category_offers/category_offers.dart';
@@ -9,6 +12,7 @@ part 'offer_event.dart';
 part 'offer_state.dart';
 part 'offer_bloc.freezed.dart';
 
+@injectable
 class OfferBloc extends Bloc<OfferEvent, OfferState> {
   final OfferUsecase _usecase;
   OfferBloc(this._usecase) : super(const _Initial()) {
@@ -27,9 +31,15 @@ class OfferBloc extends Bloc<OfferEvent, OfferState> {
 
       result.fold(
         (error) => emit(OfferState.error((error as GeneralFailure).message)),
-        (offers) => emit(OfferState.loaded(offers)),
+        (offers) {
+          var trimedOffers = <CategoryOffers>[];
+          
+          for (var category in offers) 
+            if (category.data.isNotEmpty) trimedOffers.add(category);
+          
+          emit(OfferState.loaded(trimedOffers));
+        },
       );
-      
     });
   }
 }

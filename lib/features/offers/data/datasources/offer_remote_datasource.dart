@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:injectable/injectable.dart';
 import 'package:mady/core/errors/exception.dart';
 import 'package:mady/core/network/api_provider.dart';
 import 'package:mady/features/offers/data/models/category_offers_list.dart';
@@ -8,6 +9,7 @@ abstract class OfferRemoteDataSource {
   Future<CategoryOffersList> getOffers(Map<String, dynamic> params);
 }
 
+@Injectable(as: OfferRemoteDataSource)
 class OfferRemoteDataSourceImpl implements OfferRemoteDataSource {
   final ApiProvider _provider;
 

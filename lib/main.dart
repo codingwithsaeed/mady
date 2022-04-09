@@ -1,8 +1,10 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:mady/core/utils/consts.dart';
 import 'package:mady/core/utils/theme.dart';
 import 'package:mady/di/injection.dart';
 import 'package:mady/features/login/presentation/pages/login_page.dart';
+import 'package:mady/features/main_page.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,6 +24,19 @@ class MyApp extends StatelessWidget {
       title: 'مادی',
       theme: lightTheme,
       home: const LoginPage(),
+      initialRoute: MainPage.id,
+      routes: {
+        LoginPage.id: (context) => const LoginPage(),
+        MainPage.id: (context) => const MainPage(),
+      },
+      scrollBehavior: const MaterialScrollBehavior().copyWith(
+          dragDevices: {
+            PointerDeviceKind.mouse,
+            PointerDeviceKind.stylus,
+            PointerDeviceKind.touch,
+            PointerDeviceKind.unknown
+          },
+        ),
     );
   }
 }

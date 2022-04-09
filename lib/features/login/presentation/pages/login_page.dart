@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
@@ -6,6 +8,7 @@ import 'package:mady/core/utils/show_snackbar.dart';
 import 'package:mady/core/x/x_widgets.dart';
 import 'package:mady/di/injection.dart';
 import 'package:mady/features/login/presentation/bloc/login_bloc.dart';
+import 'package:mady/features/main_page.dart';
 
 class LoginPage extends StatefulWidget {
   static const String id = 'LoginPage';
@@ -47,7 +50,7 @@ class _LoginPageState extends State<LoginPage> {
       loading: () {},
       loaded: (user) {
         FocusManager.instance.primaryFocus!.unfocus();
-        log(user.toJson().toString());
+        Navigator.pushReplacementNamed(context, MainPage.id);
       },
       error: (message) {
         FocusManager.instance.primaryFocus!.unfocus();
@@ -108,9 +111,9 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget showButton(BuildContext context) => XButton(
         title: 'ورود',
-        onPressed: () {
-          context.read<LoginBloc>().add(LoginEvent.doAuth(username, password));
-        },
+        onPressed: () => context
+            .read<LoginBloc>()
+            .add(LoginEvent.doAuth(username, password)),
         color: Colors.purple.shade800,
       );
 }
