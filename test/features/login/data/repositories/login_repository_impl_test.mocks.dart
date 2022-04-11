@@ -5,6 +5,8 @@
 import 'dart:async' as _i4;
 
 import 'package:mady/core/network/network_info.dart' as _i5;
+import 'package:mady/features/login/data/datasources/login_local_datasource.dart'
+    as _i6;
 import 'package:mady/features/login/data/datasources/login_remote_datasource.dart'
     as _i3;
 import 'package:mady/features/login/domain/entities/user.dart' as _i2;
@@ -49,5 +51,20 @@ class MockNetworkInfo extends _i1.Mock implements _i5.NetworkInfo {
   @override
   _i4.Future<bool> get isConnected =>
       (super.noSuchMethod(Invocation.getter(#isConnected),
+          returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
+}
+
+/// A class which mocks [LoginLocalDatasource].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockLoginLocalDatasource extends _i1.Mock
+    implements _i6.LoginLocalDatasource {
+  MockLoginLocalDatasource() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i4.Future<bool> saveUser(String? key, Map<String, dynamic>? value) =>
+      (super.noSuchMethod(Invocation.method(#saveUser, [key, value]),
           returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
 }

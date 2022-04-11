@@ -5,10 +5,11 @@ import 'package:mady/core/utils/theme.dart';
 import 'package:mady/di/injection.dart';
 import 'package:mady/features/login/presentation/pages/login_page.dart';
 import 'package:mady/features/main_page.dart';
+import 'package:mady/features/splash/presentation/pages/splash_page.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  configureDependencies();
+  await configureDependencies();
   runApp(const MyApp());
 }
 
@@ -21,22 +22,21 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       localizationsDelegates: localization,
       supportedLocales: supportedLocales,
-      title: 'مادی',
       theme: lightTheme,
-      home: const LoginPage(),
-      initialRoute: MainPage.id,
+      initialRoute: SplashPage.id,
       routes: {
+        SplashPage.id: (context) => const SplashPage(),
         LoginPage.id: (context) => const LoginPage(),
         MainPage.id: (context) => const MainPage(),
       },
       scrollBehavior: const MaterialScrollBehavior().copyWith(
-          dragDevices: {
-            PointerDeviceKind.mouse,
-            PointerDeviceKind.stylus,
-            PointerDeviceKind.touch,
-            PointerDeviceKind.unknown
-          },
-        ),
+        dragDevices: {
+          PointerDeviceKind.mouse,
+          PointerDeviceKind.stylus,
+          PointerDeviceKind.touch,
+          PointerDeviceKind.unknown
+        },
+      ),
     );
   }
 }

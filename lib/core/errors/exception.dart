@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-class MyException extends Equatable implements Exception {
+abstract class MyException extends Equatable implements Exception {
   @override
   List<Object?> get props => [];
 }
@@ -12,3 +12,5 @@ class ServerException extends MyException {
   @override
   List<Object?> get props => [message];
 }
+
+class SharedException extends MyException {}

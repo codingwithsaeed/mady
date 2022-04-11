@@ -10,3 +10,5 @@ const localization = [
 const supportedLocales = [
   Locale('fa'),
 ];
+
+const userKey = 'user';

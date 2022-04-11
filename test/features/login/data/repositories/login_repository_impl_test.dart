@@ -4,6 +4,7 @@ import 'package:mady/core/errors/exception.dart';
 import 'package:mady/core/errors/failure.dart';
 import 'package:mady/core/network/api_param.dart';
 import 'package:mady/core/network/network_info.dart';
+import 'package:mady/features/login/data/datasources/login_local_datasource.dart';
 import 'package:mady/features/login/data/datasources/login_remote_datasource.dart';
 import 'package:mady/features/login/data/repositories/login_repository_impl.dart';
 import 'package:mady/features/login/domain/entities/user.dart';
@@ -11,16 +12,21 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'login_repository_impl_test.mocks.dart';
 
-@GenerateMocks([LoginRemoteDatasource, NetworkInfo])
+@GenerateMocks([LoginRemoteDatasource, NetworkInfo, LoginLocalDatasource])
 void main() {
   late LoginRepositoryImpl sut;
-  late MockLoginRemoteDatasource datasource;
+  late MockLoginRemoteDatasource remoteDatasource;
+  late MockLoginLocalDatasource localDatasource;
   late MockNetworkInfo networkInfo;
 
   setUp(() {
     networkInfo = MockNetworkInfo();
-    datasource = MockLoginRemoteDatasource();
-    sut = LoginRepositoryImpl(dataSource: datasource, networkInfo: networkInfo);
+    localDatasource = MockLoginLocalDatasource();
+    remoteDatasource = MockLoginRemoteDatasource();
+    sut = LoginRepositoryImpl(
+        remote: remoteDatasource,
+        local: localDatasource,
+        networkInfo: networkInfo);
   });
 
   group('Testing authenticate', () {
@@ -39,7 +45,7 @@ void main() {
       () async {
         //arrange
         when(networkInfo.isConnected).thenAnswer((_) async => false);
-        when(datasource.authenticate(any)).thenAnswer((_) async => tUser);
+        when(remoteDatasource.authenticate(any)).thenAnswer((_) async => tUser);
         //act
         final result = await sut.authenticate(tApiparams);
         //assert
@@ -54,13 +60,14 @@ void main() {
       () async {
         //arrange
         when(networkInfo.isConnected).thenAnswer((_) async => true);
-        when(datasource.authenticate(any)).thenAnswer((_) async => tUser);
+        when(localDatasource.saveUser(any, any)).thenAnswer((_) async => true);
+        when(remoteDatasource.authenticate(any)).thenAnswer((_) async => tUser);
         //act
         final result = await sut.authenticate(tApiparams);
         //assert
         expect(result, const Right(tUser));
-        verify(datasource.authenticate(tParams));
-        verifyNoMoreInteractions(datasource);
+        verify(remoteDatasource.authenticate(tParams));
+        verifyNoMoreInteractions(remoteDatasource);
       },
     );
     test(
@@ -68,7 +75,8 @@ void main() {
       () async {
         //arrange
         when(networkInfo.isConnected).thenAnswer((_) async => true);
-        when(datasource.authenticate(any)).thenThrow(ServerException(message: noInternt));
+        when(remoteDatasource.authenticate(any))
+            .thenThrow(ServerException(message: noInternt));
         //act
         final result = await sut.authenticate(tApiparams);
         //assert
