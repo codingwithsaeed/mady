@@ -12,3 +12,10 @@ const supportedLocales = [
 ];
 
 const userKey = 'user';
+
+
+final List<DropdownMenuItem<String>> reserveListCount = [
+  const DropdownMenuItem(child: Text('1'), value: '1'),
+  const DropdownMenuItem(child: Text('2'), value: '2'),
+  const DropdownMenuItem(child: Text('3'), value: '3'),
+];

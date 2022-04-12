@@ -8,6 +8,7 @@ import 'package:mady/di/injection.dart';
 import 'package:mady/features/offers/domain/entities/category_offers/category_offers.dart';
 import 'package:mady/features/offers/domain/entities/offer/offer.dart';
 import 'package:mady/features/offers/presentation/bloc/offer_bloc.dart';
+import 'package:mady/features/offers/presentation/pages/single_offer_page.dart';
 
 class OffersPage extends StatelessWidget {
   static const id = 'OffersPage';
@@ -15,10 +16,10 @@ class OffersPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => BlocProvider(
-      create: (context) =>
-          getIt<OfferBloc>()..add(const OfferEvent.getOffers('32', '51')),
-      child: buildBody(context),
-    );
+        create: (context) =>
+            getIt<OfferBloc>()..add(const OfferEvent.getOffers('32', '51')),
+        child: buildBody(context),
+      );
 
   Widget buildBody(BuildContext context) => RefreshIndicator(
         onRefresh: () async => context
@@ -63,6 +64,11 @@ class OffersPage extends StatelessWidget {
                   const EdgeInsets.symmetric(horizontal: 4.0, vertical: 0.0),
               child: CategoryItem(
                 category: list[index],
+                onTap: (offerIndex) => Navigator.pushNamed(
+                  context,
+                  SingleOfferPage.id,
+                  arguments: list[index].data[offerIndex],
+                ),
               ),
             )),
         itemCount: list.length,
@@ -71,8 +77,10 @@ class OffersPage extends StatelessWidget {
 
 class CategoryItem extends StatelessWidget {
   final CategoryOffers category;
+  final void Function(int index) onTap;
   const CategoryItem({
     Key? key,
+    required this.onTap,
     required this.category,
   }) : super(key: key);
 
@@ -107,6 +115,8 @@ class CategoryItem extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) => OfferItem(
                   offer: category.data[index],
+                  onTap: onTap,
+                  index: index,
                 ),
                 itemCount: category.data.length,
               ),
@@ -119,9 +129,13 @@ class CategoryItem extends StatelessWidget {
 }
 
 class OfferItem extends StatelessWidget {
+  final void Function(int index) onTap;
+  final int index;
   const OfferItem({
     Key? key,
     required this.offer,
+    required this.onTap,
+    required this.index,
   }) : super(key: key);
 
   final Offer offer;
@@ -132,25 +146,28 @@ class OfferItem extends StatelessWidget {
       width: 170,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            XCircleLogo(
-              radius: 50,
-              logo: offer.picture,
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            Text(
-              offer.content,
-              style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 17,
-                  fontWeight: FontWeight.w400),
-              maxLines: 1,
-              textAlign: TextAlign.center,
-            ),
-          ],
+        child: GestureDetector(
+          onTap: () => onTap(index),
+          child: Column(
+            children: [
+              XCircleLogo(
+                radius: 50,
+                logo: offer.picture,
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              Text(
+                offer.content,
+                style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 17,
+                    fontWeight: FontWeight.w400),
+                maxLines: 1,
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -8,18 +8,20 @@ class XDropDown<T> extends StatelessWidget {
       required this.value,
       required this.height,
       required this.items,
-      required this.onChanged})
+      required this.onChanged,
+      this.padding = 8.0})
       : super(key: key);
   final String hint;
   final T? value;
   final double height;
   final List<DropdownMenuItem<T>> items;
   final void Function(T?) onChanged;
+  final double padding;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: EdgeInsets.all(padding),
       child: DropdownButtonFormField2<T>(
         value: value,
         hint: Text(hint),
