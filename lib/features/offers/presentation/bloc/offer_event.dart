@@ -3,5 +3,5 @@ part of 'offer_bloc.dart';
 @freezed
 class OfferEvent with _$OfferEvent {
   const factory OfferEvent.started() = _Started;
-  const factory OfferEvent.getOffers(String lat, String lng) = _GetOffers;
+  const factory OfferEvent.getOffers() = _GetOffers;
 }

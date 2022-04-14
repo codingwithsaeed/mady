@@ -1,47 +1,45 @@
 // ignore_for_file: curly_braces_in_flow_control_structures
 
-import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:mady/core/errors/exception.dart';
-import 'package:mady/core/errors/failure.dart';
-import 'package:mady/core/network/api_param.dart';
 import 'package:mady/core/network/network_info.dart';
 import 'package:mady/features/login/domain/entities/user.dart';
-import 'package:mady/features/offers/data/datasources/offer_local_datasource.dart';
-import 'package:mady/features/offers/domain/entities/category_offers/category_offers.dart';
+import 'package:mady/features/reserve_offer/data/datasources/reserve_offer_local_datasource.dart';
+import 'package:mady/features/reserve_offer/data/datasources/reserve_offer_remote_datasource.dart';
+import 'package:mady/features/reserve_offer/domain/entities/offer_details.dart';
+import 'package:mady/core/network/api_param.dart';
+import 'package:mady/core/errors/failure.dart';
+import 'package:dartz/dartz.dart';
+import 'package:mady/features/reserve_offer/domain/repositories/reserve_offer_repository.dart';
 
-import '../../domain/repositories/offer_repository.dart';
-import '../datasources/offer_remote_datasource.dart';
-
-@Injectable(as: OfferRepository)
-class OfferRepositoryImpl extends OfferRepository {
-  final OfferRemoteDataSource _remoteDataSource;
-  final OfferLocalDataSource _localDataSource;
+@Injectable(as: ReserveOfferRepository)
+class ReserveOfferRepositoryImpl implements ReserveOfferRepository {
+  final ReserveOfferRemoteDataSource _remoteDataSource;
+  final ReserveOfferLocalDataSource _localDataSource;
   final NetworkInfo _networkInfo;
 
-  OfferRepositoryImpl({
-    required OfferRemoteDataSource remoteDataSource,
-    required OfferLocalDataSource localDataSource,
+  ReserveOfferRepositoryImpl({
+    required ReserveOfferRemoteDataSource remoteDataSource,
+    required ReserveOfferLocalDataSource localDataSource,
     required NetworkInfo networkInfo,
   })  : _remoteDataSource = remoteDataSource,
         _localDataSource = localDataSource,
         _networkInfo = networkInfo;
 
   @override
-  Future<Either<Failure, List<CategoryOffers>>> getAllOffers(
-      ApiParam params) async {
+  Future<Either<Failure, OfferDetails>> getDetails(ApiParam params) async {
     if (!(await _networkInfo.isConnected))
       return Left(GeneralFailure(message: noInternt));
     try {
-      final result = await _remoteDataSource.getOffers(params.value);
-      return Right(result.offers);
+      final result = await _remoteDataSource.getOfferDetails(params.value);
+      return Right(result);
     } on ServerException catch (e) {
       return Left(GeneralFailure(message: e.message));
     }
   }
 
   @override
-  Future<Either<Failure, bool>> reserveOffer(ApiParam params) async {
+  Future<Either<Failure, bool>> reserve(ApiParam params) async {
     if (!(await _networkInfo.isConnected))
       return Left(GeneralFailure(message: noInternt));
     try {

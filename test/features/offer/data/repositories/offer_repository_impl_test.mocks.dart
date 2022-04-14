@@ -4,7 +4,10 @@
 
 import 'dart:async' as _i4;
 
-import 'package:mady/core/network/network_info.dart' as _i5;
+import 'package:mady/core/network/network_info.dart' as _i7;
+import 'package:mady/features/login/domain/entities/user.dart' as _i6;
+import 'package:mady/features/offers/data/datasources/offer_local_datasource.dart'
+    as _i5;
 import 'package:mady/features/offers/data/datasources/offer_remote_datasource.dart'
     as _i3;
 import 'package:mady/features/offers/data/models/category_offers_list.dart'
@@ -39,12 +42,31 @@ class MockOfferRemoteDataSource extends _i1.Mock
               returnValue: Future<_i2.CategoryOffersList>.value(
                   _FakeCategoryOffersList_0()))
           as _i4.Future<_i2.CategoryOffersList>);
+  @override
+  _i4.Future<int> reserveOffer(Map<String, dynamic>? params) =>
+      (super.noSuchMethod(Invocation.method(#reserveOffer, [params]),
+          returnValue: Future<int>.value(0)) as _i4.Future<int>);
+}
+
+/// A class which mocks [OfferLocalDataSource].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockOfferLocalDataSource extends _i1.Mock
+    implements _i5.OfferLocalDataSource {
+  MockOfferLocalDataSource() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i4.Future<_i6.User?> getUser(String? key) =>
+      (super.noSuchMethod(Invocation.method(#getUser, [key]),
+          returnValue: Future<_i6.User?>.value()) as _i4.Future<_i6.User?>);
 }
 
 /// A class which mocks [NetworkInfo].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockNetworkInfo extends _i1.Mock implements _i5.NetworkInfo {
+class MockNetworkInfo extends _i1.Mock implements _i7.NetworkInfo {
   MockNetworkInfo() {
     _i1.throwOnMissingStub(this);
   }

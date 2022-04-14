@@ -5,7 +5,7 @@ import 'package:mady/core/utils/theme.dart';
 import 'package:mady/di/injection.dart';
 import 'package:mady/features/login/presentation/pages/login_page.dart';
 import 'package:mady/features/main_page.dart';
-import 'package:mady/features/offers/presentation/pages/single_offer_page.dart';
+import 'package:mady/features/reserve_offer/presentation/pages/reserve_offer_page.dart';
 import 'package:mady/features/splash/presentation/pages/splash_page.dart';
 
 void main() async {
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
           SplashPage.id: (context) => const SplashPage(),
           LoginPage.id: (context) => const LoginPage(),
           MainPage.id: (context) => const MainPage(),
-          SingleOfferPage.id: (context) => SingleOfferPage(),
+          ReserveOfferPage.id: (context) => ReserveOfferPage(),
         },
         scrollBehavior: const MaterialScrollBehavior().copyWith(
           dragDevices: {

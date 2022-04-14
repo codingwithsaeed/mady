@@ -8,7 +8,7 @@ import 'package:mady/di/injection.dart';
 import 'package:mady/features/offers/domain/entities/category_offers/category_offers.dart';
 import 'package:mady/features/offers/domain/entities/offer/offer.dart';
 import 'package:mady/features/offers/presentation/bloc/offer_bloc.dart';
-import 'package:mady/features/offers/presentation/pages/single_offer_page.dart';
+import 'package:mady/features/reserve_offer/presentation/pages/reserve_offer_page.dart';
 
 class OffersPage extends StatelessWidget {
   static const id = 'OffersPage';
@@ -17,26 +17,28 @@ class OffersPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => BlocProvider(
         create: (context) =>
-            getIt<OfferBloc>()..add(const OfferEvent.getOffers('32', '51')),
+            getIt<OfferBloc>()..add(const OfferEvent.getOffers()),
         child: buildBody(context),
       );
 
   Widget buildBody(BuildContext context) => RefreshIndicator(
         onRefresh: () async => context
             .read<OfferBloc>()
-            .add(const OfferEvent.getOffers('32', '51')),
+            .add(const OfferEvent.getOffers()),
         child: BlocConsumer<OfferBloc, OfferState>(
           builder: blocBuilder,
           listener: blocListener,
         ),
       );
 
-  Widget blocBuilder(context, state) => state.when(
-        initial: () => const SizedBox(),
-        loading: () => buildLoading(),
-        loaded: (list) => buildList(context, list),
-        error: (message) => buildError(message),
-      );
+  Widget blocBuilder(BuildContext context, OfferState state) {
+    return state.when(
+      initial: () => const SizedBox(),
+      loading: () => buildLoading(),
+      loaded: (list) => buildList(context, list),
+      error: (message) => buildError(message),
+    );
+  }
 
   Widget buildError(String message) => Center(
         child: Text(message),
@@ -49,9 +51,7 @@ class OffersPage extends StatelessWidget {
       );
 
   void blocListener(BuildContext context, OfferState state) {
-    state.when(
-      initial: () {},
-      loading: () {},
+    state.whenOrNull(
       loaded: (list) => log(list.toString()),
       error: (message) => showSnackbar(context, message: message),
     );
@@ -64,11 +64,18 @@ class OffersPage extends StatelessWidget {
                   const EdgeInsets.symmetric(horizontal: 4.0, vertical: 0.0),
               child: CategoryItem(
                 category: list[index],
-                onTap: (offerIndex) => Navigator.pushNamed(
-                  context,
-                  SingleOfferPage.id,
-                  arguments: list[index].data[offerIndex],
-                ),
+                onTap: (offerIndex) async {
+                  final result = await Navigator.pushNamed(
+                    context,
+                    ReserveOfferPage.id,
+                    arguments: list[index].data[offerIndex],
+                  );
+                  if (result != null && result as bool) {
+                    context
+                        .read<OfferBloc>()
+                        .add(const OfferEvent.getOffers());
+                  }
+                },
               ),
             )),
         itemCount: list.length,

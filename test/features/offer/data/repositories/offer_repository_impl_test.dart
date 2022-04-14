@@ -6,6 +6,7 @@ import 'package:mady/core/errors/exception.dart';
 import 'package:mady/core/errors/failure.dart';
 import 'package:mady/core/network/api_param.dart';
 import 'package:mady/core/network/network_info.dart';
+import 'package:mady/features/offers/data/datasources/offer_local_datasource.dart';
 import 'package:mady/features/offers/data/datasources/offer_remote_datasource.dart';
 import 'package:mady/features/offers/data/models/category_offers_list.dart';
 import 'package:mady/features/offers/data/repositories/offer_repository_impl.dart';
@@ -15,17 +16,20 @@ import 'package:mockito/mockito.dart';
 import '../../../../fixtures/fixture_reader.dart';
 import 'offer_repository_impl_test.mocks.dart';
 
-@GenerateMocks([OfferRemoteDataSource, NetworkInfo])
+@GenerateMocks([OfferRemoteDataSource, OfferLocalDataSource, NetworkInfo])
 void main() {
-  late OfferRemoteDataSource remoteDataSource;
+  late MockOfferRemoteDataSource remoteDataSource;
+  late MockOfferLocalDataSource localDataSource;
   late NetworkInfo networkInfo;
   late OfferRepositoryImpl repository;
 
   setUp(() {
     networkInfo = MockNetworkInfo();
     remoteDataSource = MockOfferRemoteDataSource();
+    localDataSource = MockOfferLocalDataSource();
     repository = OfferRepositoryImpl(
       remoteDataSource: remoteDataSource,
+      localDataSource: localDataSource,
       networkInfo: networkInfo,
     );
   });

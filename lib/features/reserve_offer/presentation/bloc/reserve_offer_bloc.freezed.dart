@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'offer_bloc.dart';
+part of 'reserve_offer_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,77 +15,93 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$OfferEventTearOff {
-  const _$OfferEventTearOff();
+class _$ReserveOfferEventTearOff {
+  const _$ReserveOfferEventTearOff();
 
   _Started started() {
     return const _Started();
   }
 
-  _GetOffers getOffers() {
-    return const _GetOffers();
+  _GetDetails getDetails(Offer offer) {
+    return _GetDetails(
+      offer,
+    );
+  }
+
+  _Reserve reserve(Offer offer, String count) {
+    return _Reserve(
+      offer,
+      count,
+    );
   }
 }
 
 /// @nodoc
-const $OfferEvent = _$OfferEventTearOff();
+const $ReserveOfferEvent = _$ReserveOfferEventTearOff();
 
 /// @nodoc
-mixin _$OfferEvent {
+mixin _$ReserveOfferEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() getOffers,
+    required TResult Function(Offer offer) getDetails,
+    required TResult Function(Offer offer, String count) reserve,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? getOffers,
+    TResult Function(Offer offer)? getDetails,
+    TResult Function(Offer offer, String count)? reserve,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? getOffers,
+    TResult Function(Offer offer)? getDetails,
+    TResult Function(Offer offer, String count)? reserve,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_GetOffers value) getOffers,
+    required TResult Function(_GetDetails value) getDetails,
+    required TResult Function(_Reserve value) reserve,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_GetOffers value)? getOffers,
+    TResult Function(_GetDetails value)? getDetails,
+    TResult Function(_Reserve value)? reserve,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_GetOffers value)? getOffers,
+    TResult Function(_GetDetails value)? getDetails,
+    TResult Function(_Reserve value)? reserve,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $OfferEventCopyWith<$Res> {
-  factory $OfferEventCopyWith(
-          OfferEvent value, $Res Function(OfferEvent) then) =
-      _$OfferEventCopyWithImpl<$Res>;
+abstract class $ReserveOfferEventCopyWith<$Res> {
+  factory $ReserveOfferEventCopyWith(
+          ReserveOfferEvent value, $Res Function(ReserveOfferEvent) then) =
+      _$ReserveOfferEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$OfferEventCopyWithImpl<$Res> implements $OfferEventCopyWith<$Res> {
-  _$OfferEventCopyWithImpl(this._value, this._then);
+class _$ReserveOfferEventCopyWithImpl<$Res>
+    implements $ReserveOfferEventCopyWith<$Res> {
+  _$ReserveOfferEventCopyWithImpl(this._value, this._then);
 
-  final OfferEvent _value;
+  final ReserveOfferEvent _value;
   // ignore: unused_field
-  final $Res Function(OfferEvent) _then;
+  final $Res Function(ReserveOfferEvent) _then;
 }
 
 /// @nodoc
@@ -95,7 +111,7 @@ abstract class _$StartedCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$StartedCopyWithImpl<$Res> extends _$OfferEventCopyWithImpl<$Res>
+class __$StartedCopyWithImpl<$Res> extends _$ReserveOfferEventCopyWithImpl<$Res>
     implements _$StartedCopyWith<$Res> {
   __$StartedCopyWithImpl(_Started _value, $Res Function(_Started) _then)
       : super(_value, (v) => _then(v as _Started));
@@ -111,7 +127,7 @@ class _$_Started implements _Started {
 
   @override
   String toString() {
-    return 'OfferEvent.started()';
+    return 'ReserveOfferEvent.started()';
   }
 
   @override
@@ -127,7 +143,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() getOffers,
+    required TResult Function(Offer offer) getDetails,
+    required TResult Function(Offer offer, String count) reserve,
   }) {
     return started();
   }
@@ -136,7 +153,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? getOffers,
+    TResult Function(Offer offer)? getDetails,
+    TResult Function(Offer offer, String count)? reserve,
   }) {
     return started?.call();
   }
@@ -145,7 +163,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? getOffers,
+    TResult Function(Offer offer)? getDetails,
+    TResult Function(Offer offer, String count)? reserve,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -158,7 +177,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_GetOffers value) getOffers,
+    required TResult Function(_GetDetails value) getDetails,
+    required TResult Function(_Reserve value) reserve,
   }) {
     return started(this);
   }
@@ -167,7 +187,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_GetOffers value)? getOffers,
+    TResult Function(_GetDetails value)? getDetails,
+    TResult Function(_Reserve value)? reserve,
   }) {
     return started?.call(this);
   }
@@ -176,7 +197,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_GetOffers value)? getOffers,
+    TResult Function(_GetDetails value)? getDetails,
+    TResult Function(_Reserve value)? reserve,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -186,73 +208,111 @@ class _$_Started implements _Started {
   }
 }
 
-abstract class _Started implements OfferEvent {
+abstract class _Started implements ReserveOfferEvent {
   const factory _Started() = _$_Started;
 }
 
 /// @nodoc
-abstract class _$GetOffersCopyWith<$Res> {
-  factory _$GetOffersCopyWith(
-          _GetOffers value, $Res Function(_GetOffers) then) =
-      __$GetOffersCopyWithImpl<$Res>;
+abstract class _$GetDetailsCopyWith<$Res> {
+  factory _$GetDetailsCopyWith(
+          _GetDetails value, $Res Function(_GetDetails) then) =
+      __$GetDetailsCopyWithImpl<$Res>;
+  $Res call({Offer offer});
+
+  $OfferCopyWith<$Res> get offer;
 }
 
 /// @nodoc
-class __$GetOffersCopyWithImpl<$Res> extends _$OfferEventCopyWithImpl<$Res>
-    implements _$GetOffersCopyWith<$Res> {
-  __$GetOffersCopyWithImpl(_GetOffers _value, $Res Function(_GetOffers) _then)
-      : super(_value, (v) => _then(v as _GetOffers));
+class __$GetDetailsCopyWithImpl<$Res>
+    extends _$ReserveOfferEventCopyWithImpl<$Res>
+    implements _$GetDetailsCopyWith<$Res> {
+  __$GetDetailsCopyWithImpl(
+      _GetDetails _value, $Res Function(_GetDetails) _then)
+      : super(_value, (v) => _then(v as _GetDetails));
 
   @override
-  _GetOffers get _value => super._value as _GetOffers;
+  _GetDetails get _value => super._value as _GetDetails;
+
+  @override
+  $Res call({
+    Object? offer = freezed,
+  }) {
+    return _then(_GetDetails(
+      offer == freezed
+          ? _value.offer
+          : offer // ignore: cast_nullable_to_non_nullable
+              as Offer,
+    ));
+  }
+
+  @override
+  $OfferCopyWith<$Res> get offer {
+    return $OfferCopyWith<$Res>(_value.offer, (value) {
+      return _then(_value.copyWith(offer: value));
+    });
+  }
 }
 
 /// @nodoc
 
-class _$_GetOffers implements _GetOffers {
-  const _$_GetOffers();
+class _$_GetDetails implements _GetDetails {
+  const _$_GetDetails(this.offer);
+
+  @override
+  final Offer offer;
 
   @override
   String toString() {
-    return 'OfferEvent.getOffers()';
+    return 'ReserveOfferEvent.getDetails(offer: $offer)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _GetOffers);
+        (other.runtimeType == runtimeType &&
+            other is _GetDetails &&
+            const DeepCollectionEquality().equals(other.offer, offer));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(offer));
+
+  @JsonKey(ignore: true)
+  @override
+  _$GetDetailsCopyWith<_GetDetails> get copyWith =>
+      __$GetDetailsCopyWithImpl<_GetDetails>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() getOffers,
+    required TResult Function(Offer offer) getDetails,
+    required TResult Function(Offer offer, String count) reserve,
   }) {
-    return getOffers();
+    return getDetails(offer);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? getOffers,
+    TResult Function(Offer offer)? getDetails,
+    TResult Function(Offer offer, String count)? reserve,
   }) {
-    return getOffers?.call();
+    return getDetails?.call(offer);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? getOffers,
+    TResult Function(Offer offer)? getDetails,
+    TResult Function(Offer offer, String count)? reserve,
     required TResult orElse(),
   }) {
-    if (getOffers != null) {
-      return getOffers();
+    if (getDetails != null) {
+      return getDetails(offer);
     }
     return orElse();
   }
@@ -261,41 +321,206 @@ class _$_GetOffers implements _GetOffers {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_GetOffers value) getOffers,
+    required TResult Function(_GetDetails value) getDetails,
+    required TResult Function(_Reserve value) reserve,
   }) {
-    return getOffers(this);
+    return getDetails(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_GetOffers value)? getOffers,
+    TResult Function(_GetDetails value)? getDetails,
+    TResult Function(_Reserve value)? reserve,
   }) {
-    return getOffers?.call(this);
+    return getDetails?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_GetOffers value)? getOffers,
+    TResult Function(_GetDetails value)? getDetails,
+    TResult Function(_Reserve value)? reserve,
     required TResult orElse(),
   }) {
-    if (getOffers != null) {
-      return getOffers(this);
+    if (getDetails != null) {
+      return getDetails(this);
     }
     return orElse();
   }
 }
 
-abstract class _GetOffers implements OfferEvent {
-  const factory _GetOffers() = _$_GetOffers;
+abstract class _GetDetails implements ReserveOfferEvent {
+  const factory _GetDetails(Offer offer) = _$_GetDetails;
+
+  Offer get offer;
+  @JsonKey(ignore: true)
+  _$GetDetailsCopyWith<_GetDetails> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-class _$OfferStateTearOff {
-  const _$OfferStateTearOff();
+abstract class _$ReserveCopyWith<$Res> {
+  factory _$ReserveCopyWith(_Reserve value, $Res Function(_Reserve) then) =
+      __$ReserveCopyWithImpl<$Res>;
+  $Res call({Offer offer, String count});
+
+  $OfferCopyWith<$Res> get offer;
+}
+
+/// @nodoc
+class __$ReserveCopyWithImpl<$Res> extends _$ReserveOfferEventCopyWithImpl<$Res>
+    implements _$ReserveCopyWith<$Res> {
+  __$ReserveCopyWithImpl(_Reserve _value, $Res Function(_Reserve) _then)
+      : super(_value, (v) => _then(v as _Reserve));
+
+  @override
+  _Reserve get _value => super._value as _Reserve;
+
+  @override
+  $Res call({
+    Object? offer = freezed,
+    Object? count = freezed,
+  }) {
+    return _then(_Reserve(
+      offer == freezed
+          ? _value.offer
+          : offer // ignore: cast_nullable_to_non_nullable
+              as Offer,
+      count == freezed
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+
+  @override
+  $OfferCopyWith<$Res> get offer {
+    return $OfferCopyWith<$Res>(_value.offer, (value) {
+      return _then(_value.copyWith(offer: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_Reserve implements _Reserve {
+  const _$_Reserve(this.offer, this.count);
+
+  @override
+  final Offer offer;
+  @override
+  final String count;
+
+  @override
+  String toString() {
+    return 'ReserveOfferEvent.reserve(offer: $offer, count: $count)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _Reserve &&
+            const DeepCollectionEquality().equals(other.offer, offer) &&
+            const DeepCollectionEquality().equals(other.count, count));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(offer),
+      const DeepCollectionEquality().hash(count));
+
+  @JsonKey(ignore: true)
+  @override
+  _$ReserveCopyWith<_Reserve> get copyWith =>
+      __$ReserveCopyWithImpl<_Reserve>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(Offer offer) getDetails,
+    required TResult Function(Offer offer, String count) reserve,
+  }) {
+    return reserve(offer, count);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(Offer offer)? getDetails,
+    TResult Function(Offer offer, String count)? reserve,
+  }) {
+    return reserve?.call(offer, count);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(Offer offer)? getDetails,
+    TResult Function(Offer offer, String count)? reserve,
+    required TResult orElse(),
+  }) {
+    if (reserve != null) {
+      return reserve(offer, count);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_GetDetails value) getDetails,
+    required TResult Function(_Reserve value) reserve,
+  }) {
+    return reserve(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_GetDetails value)? getDetails,
+    TResult Function(_Reserve value)? reserve,
+  }) {
+    return reserve?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_GetDetails value)? getDetails,
+    TResult Function(_Reserve value)? reserve,
+    required TResult orElse(),
+  }) {
+    if (reserve != null) {
+      return reserve(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Reserve implements ReserveOfferEvent {
+  const factory _Reserve(Offer offer, String count) = _$_Reserve;
+
+  Offer get offer;
+  String get count;
+  @JsonKey(ignore: true)
+  _$ReserveCopyWith<_Reserve> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+class _$ReserveOfferStateTearOff {
+  const _$ReserveOfferStateTearOff();
 
   _Initial initial() {
     return const _Initial();
@@ -305,9 +530,10 @@ class _$OfferStateTearOff {
     return const _Loading();
   }
 
-  _Loaded loaded(List<CategoryOffers> offers) {
+  _Loaded loaded(Offer offer, bool isReserved) {
     return _Loaded(
-      offers,
+      offer,
+      isReserved,
     );
   }
 
@@ -319,15 +545,15 @@ class _$OfferStateTearOff {
 }
 
 /// @nodoc
-const $OfferState = _$OfferStateTearOff();
+const $ReserveOfferState = _$ReserveOfferStateTearOff();
 
 /// @nodoc
-mixin _$OfferState {
+mixin _$ReserveOfferState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<CategoryOffers> offers) loaded,
+    required TResult Function(Offer offer, bool isReserved) loaded,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -335,7 +561,7 @@ mixin _$OfferState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<CategoryOffers> offers)? loaded,
+    TResult Function(Offer offer, bool isReserved)? loaded,
     TResult Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -343,7 +569,7 @@ mixin _$OfferState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<CategoryOffers> offers)? loaded,
+    TResult Function(Offer offer, bool isReserved)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -376,19 +602,20 @@ mixin _$OfferState {
 }
 
 /// @nodoc
-abstract class $OfferStateCopyWith<$Res> {
-  factory $OfferStateCopyWith(
-          OfferState value, $Res Function(OfferState) then) =
-      _$OfferStateCopyWithImpl<$Res>;
+abstract class $ReserveOfferStateCopyWith<$Res> {
+  factory $ReserveOfferStateCopyWith(
+          ReserveOfferState value, $Res Function(ReserveOfferState) then) =
+      _$ReserveOfferStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$OfferStateCopyWithImpl<$Res> implements $OfferStateCopyWith<$Res> {
-  _$OfferStateCopyWithImpl(this._value, this._then);
+class _$ReserveOfferStateCopyWithImpl<$Res>
+    implements $ReserveOfferStateCopyWith<$Res> {
+  _$ReserveOfferStateCopyWithImpl(this._value, this._then);
 
-  final OfferState _value;
+  final ReserveOfferState _value;
   // ignore: unused_field
-  final $Res Function(OfferState) _then;
+  final $Res Function(ReserveOfferState) _then;
 }
 
 /// @nodoc
@@ -398,7 +625,7 @@ abstract class _$InitialCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$InitialCopyWithImpl<$Res> extends _$OfferStateCopyWithImpl<$Res>
+class __$InitialCopyWithImpl<$Res> extends _$ReserveOfferStateCopyWithImpl<$Res>
     implements _$InitialCopyWith<$Res> {
   __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
       : super(_value, (v) => _then(v as _Initial));
@@ -414,7 +641,7 @@ class _$_Initial implements _Initial {
 
   @override
   String toString() {
-    return 'OfferState.initial()';
+    return 'ReserveOfferState.initial()';
   }
 
   @override
@@ -431,7 +658,7 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<CategoryOffers> offers) loaded,
+    required TResult Function(Offer offer, bool isReserved) loaded,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -442,7 +669,7 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<CategoryOffers> offers)? loaded,
+    TResult Function(Offer offer, bool isReserved)? loaded,
     TResult Function(String message)? error,
   }) {
     return initial?.call();
@@ -453,7 +680,7 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<CategoryOffers> offers)? loaded,
+    TResult Function(Offer offer, bool isReserved)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -501,7 +728,7 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements OfferState {
+abstract class _Initial implements ReserveOfferState {
   const factory _Initial() = _$_Initial;
 }
 
@@ -512,7 +739,7 @@ abstract class _$LoadingCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$LoadingCopyWithImpl<$Res> extends _$OfferStateCopyWithImpl<$Res>
+class __$LoadingCopyWithImpl<$Res> extends _$ReserveOfferStateCopyWithImpl<$Res>
     implements _$LoadingCopyWith<$Res> {
   __$LoadingCopyWithImpl(_Loading _value, $Res Function(_Loading) _then)
       : super(_value, (v) => _then(v as _Loading));
@@ -528,7 +755,7 @@ class _$_Loading implements _Loading {
 
   @override
   String toString() {
-    return 'OfferState.loading()';
+    return 'ReserveOfferState.loading()';
   }
 
   @override
@@ -545,7 +772,7 @@ class _$_Loading implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<CategoryOffers> offers) loaded,
+    required TResult Function(Offer offer, bool isReserved) loaded,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -556,7 +783,7 @@ class _$_Loading implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<CategoryOffers> offers)? loaded,
+    TResult Function(Offer offer, bool isReserved)? loaded,
     TResult Function(String message)? error,
   }) {
     return loading?.call();
@@ -567,7 +794,7 @@ class _$_Loading implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<CategoryOffers> offers)? loaded,
+    TResult Function(Offer offer, bool isReserved)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -615,7 +842,7 @@ class _$_Loading implements _Loading {
   }
 }
 
-abstract class _Loading implements OfferState {
+abstract class _Loading implements ReserveOfferState {
   const factory _Loading() = _$_Loading;
 }
 
@@ -623,11 +850,13 @@ abstract class _Loading implements OfferState {
 abstract class _$LoadedCopyWith<$Res> {
   factory _$LoadedCopyWith(_Loaded value, $Res Function(_Loaded) then) =
       __$LoadedCopyWithImpl<$Res>;
-  $Res call({List<CategoryOffers> offers});
+  $Res call({Offer offer, bool isReserved});
+
+  $OfferCopyWith<$Res> get offer;
 }
 
 /// @nodoc
-class __$LoadedCopyWithImpl<$Res> extends _$OfferStateCopyWithImpl<$Res>
+class __$LoadedCopyWithImpl<$Res> extends _$ReserveOfferStateCopyWithImpl<$Res>
     implements _$LoadedCopyWith<$Res> {
   __$LoadedCopyWithImpl(_Loaded _value, $Res Function(_Loaded) _then)
       : super(_value, (v) => _then(v as _Loaded));
@@ -637,28 +866,42 @@ class __$LoadedCopyWithImpl<$Res> extends _$OfferStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? offers = freezed,
+    Object? offer = freezed,
+    Object? isReserved = freezed,
   }) {
     return _then(_Loaded(
-      offers == freezed
-          ? _value.offers
-          : offers // ignore: cast_nullable_to_non_nullable
-              as List<CategoryOffers>,
+      offer == freezed
+          ? _value.offer
+          : offer // ignore: cast_nullable_to_non_nullable
+              as Offer,
+      isReserved == freezed
+          ? _value.isReserved
+          : isReserved // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
+  }
+
+  @override
+  $OfferCopyWith<$Res> get offer {
+    return $OfferCopyWith<$Res>(_value.offer, (value) {
+      return _then(_value.copyWith(offer: value));
+    });
   }
 }
 
 /// @nodoc
 
 class _$_Loaded implements _Loaded {
-  const _$_Loaded(this.offers);
+  const _$_Loaded(this.offer, this.isReserved);
 
   @override
-  final List<CategoryOffers> offers;
+  final Offer offer;
+  @override
+  final bool isReserved;
 
   @override
   String toString() {
-    return 'OfferState.loaded(offers: $offers)';
+    return 'ReserveOfferState.loaded(offer: $offer, isReserved: $isReserved)';
   }
 
   @override
@@ -666,12 +909,16 @@ class _$_Loaded implements _Loaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Loaded &&
-            const DeepCollectionEquality().equals(other.offers, offers));
+            const DeepCollectionEquality().equals(other.offer, offer) &&
+            const DeepCollectionEquality()
+                .equals(other.isReserved, isReserved));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(offers));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(offer),
+      const DeepCollectionEquality().hash(isReserved));
 
   @JsonKey(ignore: true)
   @override
@@ -683,10 +930,10 @@ class _$_Loaded implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<CategoryOffers> offers) loaded,
+    required TResult Function(Offer offer, bool isReserved) loaded,
     required TResult Function(String message) error,
   }) {
-    return loaded(offers);
+    return loaded(offer, isReserved);
   }
 
   @override
@@ -694,10 +941,10 @@ class _$_Loaded implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<CategoryOffers> offers)? loaded,
+    TResult Function(Offer offer, bool isReserved)? loaded,
     TResult Function(String message)? error,
   }) {
-    return loaded?.call(offers);
+    return loaded?.call(offer, isReserved);
   }
 
   @override
@@ -705,12 +952,12 @@ class _$_Loaded implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<CategoryOffers> offers)? loaded,
+    TResult Function(Offer offer, bool isReserved)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(offers);
+      return loaded(offer, isReserved);
     }
     return orElse();
   }
@@ -753,10 +1000,11 @@ class _$_Loaded implements _Loaded {
   }
 }
 
-abstract class _Loaded implements OfferState {
-  const factory _Loaded(List<CategoryOffers> offers) = _$_Loaded;
+abstract class _Loaded implements ReserveOfferState {
+  const factory _Loaded(Offer offer, bool isReserved) = _$_Loaded;
 
-  List<CategoryOffers> get offers;
+  Offer get offer;
+  bool get isReserved;
   @JsonKey(ignore: true)
   _$LoadedCopyWith<_Loaded> get copyWith => throw _privateConstructorUsedError;
 }
@@ -769,7 +1017,7 @@ abstract class _$ErrorCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$ErrorCopyWithImpl<$Res> extends _$OfferStateCopyWithImpl<$Res>
+class __$ErrorCopyWithImpl<$Res> extends _$ReserveOfferStateCopyWithImpl<$Res>
     implements _$ErrorCopyWith<$Res> {
   __$ErrorCopyWithImpl(_Error _value, $Res Function(_Error) _then)
       : super(_value, (v) => _then(v as _Error));
@@ -800,7 +1048,7 @@ class _$_Error implements _Error {
 
   @override
   String toString() {
-    return 'OfferState.error(message: $message)';
+    return 'ReserveOfferState.error(message: $message)';
   }
 
   @override
@@ -825,7 +1073,7 @@ class _$_Error implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<CategoryOffers> offers) loaded,
+    required TResult Function(Offer offer, bool isReserved) loaded,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -836,7 +1084,7 @@ class _$_Error implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<CategoryOffers> offers)? loaded,
+    TResult Function(Offer offer, bool isReserved)? loaded,
     TResult Function(String message)? error,
   }) {
     return error?.call(message);
@@ -847,7 +1095,7 @@ class _$_Error implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<CategoryOffers> offers)? loaded,
+    TResult Function(Offer offer, bool isReserved)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -895,7 +1143,7 @@ class _$_Error implements _Error {
   }
 }
 
-abstract class _Error implements OfferState {
+abstract class _Error implements ReserveOfferState {
   const factory _Error(String message) = _$_Error;
 
   String get message;
