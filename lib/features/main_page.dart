@@ -2,7 +2,7 @@
 
 import 'package:fancy_bottom_navigation/fancy_bottom_navigation.dart';
 import 'package:flutter/material.dart';
-import 'package:mady/features/offers/presentation/pages/near_offers_page.dart';
+import 'package:mady/features/near_offers/presentation/pages/near_offers_page.dart';
 import 'package:mady/features/offers/presentation/pages/offers_page.dart';
 import 'package:mady/features/reserve_offer/presentation/pages/reserved_offers.dart';
 import 'package:mady/features/profile_page.dart';
@@ -63,6 +63,19 @@ class _MainPageState extends State<MainPage> {
         title: Text(_tabs[position].label ?? "مادی"),
         centerTitle: true,
         automaticallyImplyLeading: false,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            bottomRight: Radius.circular(15),
+            bottomLeft: Radius.circular(15),
+          ),
+        ),
+        actions: [
+          if (position == 1)
+            IconButton(
+              icon: const Icon(Icons.location_on_rounded),
+              onPressed: () {},
+            ),
+        ],
       ),
       body: PageView(
         controller: _controller,
@@ -87,6 +100,6 @@ class _MainPageState extends State<MainPage> {
   }
 
   void _onPageChanged(index) => setState(() {
-      position = index;
-    });
+        position = index;
+      });
 }

@@ -12,19 +12,21 @@ import 'package:mady/features/reserve_offer/presentation/pages/reserve_offer_pag
 
 class OffersPage extends StatelessWidget {
   static const id = 'OffersPage';
+
   const OffersPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => BlocProvider(
-        create: (context) =>
-            getIt<OfferBloc>()..add(const OfferEvent.getOffers()),
-        child: buildBody(context),
-      );
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) =>
+          getIt<OfferBloc>()..add(const OfferEvent.getOffers()),
+      child: buildBody(context),
+    );
+  }
 
   Widget buildBody(BuildContext context) => RefreshIndicator(
-        onRefresh: () async => context
-            .read<OfferBloc>()
-            .add(const OfferEvent.getOffers()),
+        onRefresh: () async =>
+            context.read<OfferBloc>().add(const OfferEvent.getOffers()),
         child: BlocConsumer<OfferBloc, OfferState>(
           builder: blocBuilder,
           listener: blocListener,
@@ -71,9 +73,7 @@ class OffersPage extends StatelessWidget {
                     arguments: list[index].data[offerIndex],
                   );
                   if (result != null && result as bool) {
-                    context
-                        .read<OfferBloc>()
-                        .add(const OfferEvent.getOffers());
+                    context.read<OfferBloc>().add(const OfferEvent.getOffers());
                   }
                 },
               ),

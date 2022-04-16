@@ -17,8 +17,5 @@ class OfferUsecase {
   ) async =>
       await _repository.getAllOffers(params);
 
-  Future<Either<Failure, bool>> reserveOffer(ApiParam params) async =>
-      await _repository.reserveOffer(params);
-
   Future<Either<Failure, User>> getUser(String key) async => await _repository.getUser(key);
 }

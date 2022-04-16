@@ -42,10 +42,6 @@ class MockOfferRemoteDataSource extends _i1.Mock
               returnValue: Future<_i2.CategoryOffersList>.value(
                   _FakeCategoryOffersList_0()))
           as _i4.Future<_i2.CategoryOffersList>);
-  @override
-  _i4.Future<int> reserveOffer(Map<String, dynamic>? params) =>
-      (super.noSuchMethod(Invocation.method(#reserveOffer, [params]),
-          returnValue: Future<int>.value(0)) as _i4.Future<int>);
 }
 
 /// A class which mocks [OfferLocalDataSource].

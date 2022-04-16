@@ -7,34 +7,36 @@ import 'package:mady/core/errors/failure.dart';
 import 'package:mady/core/network/api_param.dart';
 import 'package:mady/core/network/network_info.dart';
 import 'package:mady/features/login/domain/entities/user.dart';
-import 'package:mady/features/offers/data/datasources/offer_local_datasource.dart';
-import 'package:mady/features/offers/domain/entities/category_offers/category_offers.dart';
+import 'package:mady/features/near_offers/data/datasources/near_offers_local_datasource.dart';
+import 'package:mady/features/near_offers/data/datasources/near_offers_remote_datasource.dart';
+import 'package:mady/features/near_offers/domain/repositories/near_offers_repository.dart';
+import 'package:mady/features/offers/domain/entities/offer/offer.dart';
 
-import '../../domain/repositories/offer_repository.dart';
-import '../datasources/offer_remote_datasource.dart';
-
-@Injectable(as: OfferRepository)
-class OfferRepositoryImpl extends OfferRepository {
-  final OfferRemoteDataSource _remoteDataSource;
-  final OfferLocalDataSource _localDataSource;
+@Injectable(as: NearOffersRepository)
+class NearOfferRepositoryImpl extends NearOffersRepository {
+  final NearOffersRemoteDataSource _remoteDataSource;
+  final NearOffersLocalDataSource _localDataSource;
   final NetworkInfo _networkInfo;
 
-  OfferRepositoryImpl({
-    required OfferRemoteDataSource remoteDataSource,
-    required OfferLocalDataSource localDataSource,
+  NearOfferRepositoryImpl({
+    required NearOffersRemoteDataSource remoteDataSource,
+    required NearOffersLocalDataSource localDataSource,
     required NetworkInfo networkInfo,
   })  : _remoteDataSource = remoteDataSource,
         _localDataSource = localDataSource,
         _networkInfo = networkInfo;
 
   @override
-  Future<Either<Failure, List<CategoryOffers>>> getAllOffers(
-      ApiParam params) async {
+  Future<Either<Failure, List<Offer>>> getAllOffers(ApiParam params) async {
     if (!(await _networkInfo.isConnected))
       return Left(GeneralFailure(message: noInternt));
     try {
       final result = await _remoteDataSource.getOffers(params.value);
-      return Right(result.offers);
+      if (result.success == 1)
+        return Right(result.offers);
+      else
+        return Left(
+            GeneralFailure(message: "هیچ آفری در نزدیکی شما وجود ندارد"));
     } on ServerException catch (e) {
       return Left(GeneralFailure(message: e.message));
     }

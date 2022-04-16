@@ -19,14 +19,8 @@ class ReserveOfferBloc extends Bloc<ReserveOfferEvent, ReserveOfferState> {
   ReserveOfferBloc(this._usecase) : super(const _Initial()) {
     on<_GetDetails>((event, emit) async {
       emit(const ReserveOfferState.loading());
+      User user = await getUser(emit);
 
-      late User user;
-      final userRes = await _usecase.getUser(userKey);
-      userRes.fold((error) {
-        emit(ReserveOfferState.error((error as GeneralFailure).message));
-      }, (cachedUser) async {
-        user = cachedUser;
-      });
       final result = await _usecase.getDetails(ApiParam(value: {
         'action': 'get_offer_details',
         'oid': event.offer.oid,
@@ -43,24 +37,14 @@ class ReserveOfferBloc extends Bloc<ReserveOfferEvent, ReserveOfferState> {
 
     on<_Reserve>((event, emit) async {
       emit(const ReserveOfferState.loading());
-      late User user;
-      final userRes = await _usecase.getUser(userKey);
-      userRes.fold((error) {
-        emit(ReserveOfferState.error((error as GeneralFailure).message));
-      }, (cachedUser) async {
-        user = cachedUser;
-      });
+      User user = await getUser(emit);
 
-      final result = await _usecase.reserve(
-        ApiParam(
-          value: {
-            'action': 'reserve_offer',
-            'uid': user.uid,
-            'oid': event.offer.oid,
-            'count': event.count,
-          },
-        ),
-      );
+      final result = await _usecase.reserve(ApiParam(value: {
+        'action': 'reserve_offer',
+        'uid': user.uid,
+        'oid': event.offer.oid,
+        'count': event.count
+      }));
 
       result.fold(
         (error) =>
@@ -76,5 +60,17 @@ class ReserveOfferBloc extends Bloc<ReserveOfferEvent, ReserveOfferState> {
         },
       );
     });
+  }
+
+  Future<User> getUser(Emitter<ReserveOfferState> emit) async {
+    late User user;
+    final userRes = await _usecase.getUser(userKey);
+    userRes.fold((error) {
+      emit(ReserveOfferState.error((error as GeneralFailure).message));
+      return;
+    }, (cachedUser) async {
+      user = cachedUser;
+    });
+    return user;
   }
 }

@@ -7,7 +7,6 @@ import 'package:mady/features/offers/data/models/category_offers_list.dart';
 
 abstract class OfferRemoteDataSource {
   Future<CategoryOffersList> getOffers(Map<String, dynamic> params);
-  Future<int> reserveOffer(Map<String, dynamic> params);
 }
 
 @Injectable(as: OfferRemoteDataSource)
@@ -25,11 +24,5 @@ class OfferRemoteDataSourceImpl implements OfferRemoteDataSource {
       throw ServerException(
           message: e.message ?? "دریافت اطلاعات با خطا مواجه شد");
     }
-  }
-
-  @override
-  Future<int> reserveOffer(Map<String, dynamic> params) async {
-    final result = await _provider.post(currentDataUrl, params: params);
-    return jsonDecode(result.body)['success'];
   }
 }
