@@ -19,3 +19,11 @@ final List<DropdownMenuItem<String>> reserveListCount = [
   const DropdownMenuItem(child: Text('2'), value: '2'),
   const DropdownMenuItem(child: Text('3'), value: '3'),
 ];
+
+const List<String> _reserveStatusTitle = [
+  "تحویل داده نشده",
+  "تحویل داده شده",
+  "لغو شده",
+];
+
+List<String> get reserveStatusTitle => _reserveStatusTitle;

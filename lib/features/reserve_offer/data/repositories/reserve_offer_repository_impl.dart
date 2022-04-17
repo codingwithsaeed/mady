@@ -8,6 +8,7 @@ import 'package:mady/features/reserve_offer/domain/entities/offer_details.dart';
 import 'package:mady/core/network/api_param.dart';
 import 'package:mady/core/errors/failure.dart';
 import 'package:dartz/dartz.dart';
+import 'package:mady/features/reserve_offer/domain/entities/reserve/reserve.dart';
 import 'package:mady/features/reserve_offer/domain/repositories/reserve_offer_repository.dart';
 
 @Injectable(as: ReserveOfferRepository)
@@ -15,7 +16,7 @@ class ReserveOfferRepositoryImpl implements ReserveOfferRepository {
   final ReserveOfferRemoteDataSource _remoteDataSource;
   final NetworkInfo _networkInfo;
 
-  ReserveOfferRepositoryImpl({
+  const ReserveOfferRepositoryImpl({
     required ReserveOfferRemoteDataSource remoteDataSource,
     required NetworkInfo networkInfo,
   })  : _remoteDataSource = remoteDataSource,
@@ -57,4 +58,15 @@ class ReserveOfferRepositoryImpl implements ReserveOfferRepository {
     }
   }
 
+  @override
+  Future<Either<Failure, List<Reserve>>> getReserves(ApiParam params) async {
+    try {
+      if (!await _networkInfo.isConnected)
+        return Left(GeneralFailure(message: noInternt));
+      final result = await _remoteDataSource.getReserves(params.value);
+      return Right(result.reserves);
+    } on ServerException catch (e) {
+      return Left(GeneralFailure(message: e.message));
+    }
+  }
 }

@@ -34,6 +34,10 @@ class _$ReserveOfferEventTearOff {
       count,
     );
   }
+
+  _Reserves getReserves() {
+    return const _Reserves();
+  }
 }
 
 /// @nodoc
@@ -46,6 +50,7 @@ mixin _$ReserveOfferEvent {
     required TResult Function() started,
     required TResult Function(Offer offer) getDetails,
     required TResult Function(Offer offer, String count) reserve,
+    required TResult Function() getReserves,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -53,6 +58,7 @@ mixin _$ReserveOfferEvent {
     TResult Function()? started,
     TResult Function(Offer offer)? getDetails,
     TResult Function(Offer offer, String count)? reserve,
+    TResult Function()? getReserves,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,6 +66,7 @@ mixin _$ReserveOfferEvent {
     TResult Function()? started,
     TResult Function(Offer offer)? getDetails,
     TResult Function(Offer offer, String count)? reserve,
+    TResult Function()? getReserves,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -68,6 +75,7 @@ mixin _$ReserveOfferEvent {
     required TResult Function(_Started value) started,
     required TResult Function(_GetDetails value) getDetails,
     required TResult Function(_Reserve value) reserve,
+    required TResult Function(_Reserves value) getReserves,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -75,6 +83,7 @@ mixin _$ReserveOfferEvent {
     TResult Function(_Started value)? started,
     TResult Function(_GetDetails value)? getDetails,
     TResult Function(_Reserve value)? reserve,
+    TResult Function(_Reserves value)? getReserves,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -82,6 +91,7 @@ mixin _$ReserveOfferEvent {
     TResult Function(_Started value)? started,
     TResult Function(_GetDetails value)? getDetails,
     TResult Function(_Reserve value)? reserve,
+    TResult Function(_Reserves value)? getReserves,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -145,6 +155,7 @@ class _$_Started implements _Started {
     required TResult Function() started,
     required TResult Function(Offer offer) getDetails,
     required TResult Function(Offer offer, String count) reserve,
+    required TResult Function() getReserves,
   }) {
     return started();
   }
@@ -155,6 +166,7 @@ class _$_Started implements _Started {
     TResult Function()? started,
     TResult Function(Offer offer)? getDetails,
     TResult Function(Offer offer, String count)? reserve,
+    TResult Function()? getReserves,
   }) {
     return started?.call();
   }
@@ -165,6 +177,7 @@ class _$_Started implements _Started {
     TResult Function()? started,
     TResult Function(Offer offer)? getDetails,
     TResult Function(Offer offer, String count)? reserve,
+    TResult Function()? getReserves,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -179,6 +192,7 @@ class _$_Started implements _Started {
     required TResult Function(_Started value) started,
     required TResult Function(_GetDetails value) getDetails,
     required TResult Function(_Reserve value) reserve,
+    required TResult Function(_Reserves value) getReserves,
   }) {
     return started(this);
   }
@@ -189,6 +203,7 @@ class _$_Started implements _Started {
     TResult Function(_Started value)? started,
     TResult Function(_GetDetails value)? getDetails,
     TResult Function(_Reserve value)? reserve,
+    TResult Function(_Reserves value)? getReserves,
   }) {
     return started?.call(this);
   }
@@ -199,6 +214,7 @@ class _$_Started implements _Started {
     TResult Function(_Started value)? started,
     TResult Function(_GetDetails value)? getDetails,
     TResult Function(_Reserve value)? reserve,
+    TResult Function(_Reserves value)? getReserves,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -289,6 +305,7 @@ class _$_GetDetails implements _GetDetails {
     required TResult Function() started,
     required TResult Function(Offer offer) getDetails,
     required TResult Function(Offer offer, String count) reserve,
+    required TResult Function() getReserves,
   }) {
     return getDetails(offer);
   }
@@ -299,6 +316,7 @@ class _$_GetDetails implements _GetDetails {
     TResult Function()? started,
     TResult Function(Offer offer)? getDetails,
     TResult Function(Offer offer, String count)? reserve,
+    TResult Function()? getReserves,
   }) {
     return getDetails?.call(offer);
   }
@@ -309,6 +327,7 @@ class _$_GetDetails implements _GetDetails {
     TResult Function()? started,
     TResult Function(Offer offer)? getDetails,
     TResult Function(Offer offer, String count)? reserve,
+    TResult Function()? getReserves,
     required TResult orElse(),
   }) {
     if (getDetails != null) {
@@ -323,6 +342,7 @@ class _$_GetDetails implements _GetDetails {
     required TResult Function(_Started value) started,
     required TResult Function(_GetDetails value) getDetails,
     required TResult Function(_Reserve value) reserve,
+    required TResult Function(_Reserves value) getReserves,
   }) {
     return getDetails(this);
   }
@@ -333,6 +353,7 @@ class _$_GetDetails implements _GetDetails {
     TResult Function(_Started value)? started,
     TResult Function(_GetDetails value)? getDetails,
     TResult Function(_Reserve value)? reserve,
+    TResult Function(_Reserves value)? getReserves,
   }) {
     return getDetails?.call(this);
   }
@@ -343,6 +364,7 @@ class _$_GetDetails implements _GetDetails {
     TResult Function(_Started value)? started,
     TResult Function(_GetDetails value)? getDetails,
     TResult Function(_Reserve value)? reserve,
+    TResult Function(_Reserves value)? getReserves,
     required TResult orElse(),
   }) {
     if (getDetails != null) {
@@ -445,6 +467,7 @@ class _$_Reserve implements _Reserve {
     required TResult Function() started,
     required TResult Function(Offer offer) getDetails,
     required TResult Function(Offer offer, String count) reserve,
+    required TResult Function() getReserves,
   }) {
     return reserve(offer, count);
   }
@@ -455,6 +478,7 @@ class _$_Reserve implements _Reserve {
     TResult Function()? started,
     TResult Function(Offer offer)? getDetails,
     TResult Function(Offer offer, String count)? reserve,
+    TResult Function()? getReserves,
   }) {
     return reserve?.call(offer, count);
   }
@@ -465,6 +489,7 @@ class _$_Reserve implements _Reserve {
     TResult Function()? started,
     TResult Function(Offer offer)? getDetails,
     TResult Function(Offer offer, String count)? reserve,
+    TResult Function()? getReserves,
     required TResult orElse(),
   }) {
     if (reserve != null) {
@@ -479,6 +504,7 @@ class _$_Reserve implements _Reserve {
     required TResult Function(_Started value) started,
     required TResult Function(_GetDetails value) getDetails,
     required TResult Function(_Reserve value) reserve,
+    required TResult Function(_Reserves value) getReserves,
   }) {
     return reserve(this);
   }
@@ -489,6 +515,7 @@ class _$_Reserve implements _Reserve {
     TResult Function(_Started value)? started,
     TResult Function(_GetDetails value)? getDetails,
     TResult Function(_Reserve value)? reserve,
+    TResult Function(_Reserves value)? getReserves,
   }) {
     return reserve?.call(this);
   }
@@ -499,6 +526,7 @@ class _$_Reserve implements _Reserve {
     TResult Function(_Started value)? started,
     TResult Function(_GetDetails value)? getDetails,
     TResult Function(_Reserve value)? reserve,
+    TResult Function(_Reserves value)? getReserves,
     required TResult orElse(),
   }) {
     if (reserve != null) {
@@ -516,6 +544,121 @@ abstract class _Reserve implements ReserveOfferEvent {
   @JsonKey(ignore: true)
   _$ReserveCopyWith<_Reserve> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$ReservesCopyWith<$Res> {
+  factory _$ReservesCopyWith(_Reserves value, $Res Function(_Reserves) then) =
+      __$ReservesCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$ReservesCopyWithImpl<$Res>
+    extends _$ReserveOfferEventCopyWithImpl<$Res>
+    implements _$ReservesCopyWith<$Res> {
+  __$ReservesCopyWithImpl(_Reserves _value, $Res Function(_Reserves) _then)
+      : super(_value, (v) => _then(v as _Reserves));
+
+  @override
+  _Reserves get _value => super._value as _Reserves;
+}
+
+/// @nodoc
+
+class _$_Reserves implements _Reserves {
+  const _$_Reserves();
+
+  @override
+  String toString() {
+    return 'ReserveOfferEvent.getReserves()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _Reserves);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(Offer offer) getDetails,
+    required TResult Function(Offer offer, String count) reserve,
+    required TResult Function() getReserves,
+  }) {
+    return getReserves();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(Offer offer)? getDetails,
+    TResult Function(Offer offer, String count)? reserve,
+    TResult Function()? getReserves,
+  }) {
+    return getReserves?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(Offer offer)? getDetails,
+    TResult Function(Offer offer, String count)? reserve,
+    TResult Function()? getReserves,
+    required TResult orElse(),
+  }) {
+    if (getReserves != null) {
+      return getReserves();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_GetDetails value) getDetails,
+    required TResult Function(_Reserve value) reserve,
+    required TResult Function(_Reserves value) getReserves,
+  }) {
+    return getReserves(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_GetDetails value)? getDetails,
+    TResult Function(_Reserve value)? reserve,
+    TResult Function(_Reserves value)? getReserves,
+  }) {
+    return getReserves?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_GetDetails value)? getDetails,
+    TResult Function(_Reserve value)? reserve,
+    TResult Function(_Reserves value)? getReserves,
+    required TResult orElse(),
+  }) {
+    if (getReserves != null) {
+      return getReserves(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Reserves implements ReserveOfferEvent {
+  const factory _Reserves() = _$_Reserves;
 }
 
 /// @nodoc
@@ -537,6 +680,12 @@ class _$ReserveOfferStateTearOff {
     );
   }
 
+  _Reserved reservered(List<Reserve> reserves) {
+    return _Reserved(
+      reserves,
+    );
+  }
+
   _Error error(String message) {
     return _Error(
       message,
@@ -554,6 +703,7 @@ mixin _$ReserveOfferState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(Offer offer, bool isReserved) loaded,
+    required TResult Function(List<Reserve> reserves) reservered,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -562,6 +712,7 @@ mixin _$ReserveOfferState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Offer offer, bool isReserved)? loaded,
+    TResult Function(List<Reserve> reserves)? reservered,
     TResult Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -570,6 +721,7 @@ mixin _$ReserveOfferState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Offer offer, bool isReserved)? loaded,
+    TResult Function(List<Reserve> reserves)? reservered,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -579,6 +731,7 @@ mixin _$ReserveOfferState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Reserved value) reservered,
     required TResult Function(_Error value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -587,6 +740,7 @@ mixin _$ReserveOfferState {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_Reserved value)? reservered,
     TResult Function(_Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -595,6 +749,7 @@ mixin _$ReserveOfferState {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_Reserved value)? reservered,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) =>
@@ -659,6 +814,7 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(Offer offer, bool isReserved) loaded,
+    required TResult Function(List<Reserve> reserves) reservered,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -670,6 +826,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Offer offer, bool isReserved)? loaded,
+    TResult Function(List<Reserve> reserves)? reservered,
     TResult Function(String message)? error,
   }) {
     return initial?.call();
@@ -681,6 +838,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Offer offer, bool isReserved)? loaded,
+    TResult Function(List<Reserve> reserves)? reservered,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -696,6 +854,7 @@ class _$_Initial implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Reserved value) reservered,
     required TResult Function(_Error value) error,
   }) {
     return initial(this);
@@ -707,6 +866,7 @@ class _$_Initial implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_Reserved value)? reservered,
     TResult Function(_Error value)? error,
   }) {
     return initial?.call(this);
@@ -718,6 +878,7 @@ class _$_Initial implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_Reserved value)? reservered,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -773,6 +934,7 @@ class _$_Loading implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(Offer offer, bool isReserved) loaded,
+    required TResult Function(List<Reserve> reserves) reservered,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -784,6 +946,7 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Offer offer, bool isReserved)? loaded,
+    TResult Function(List<Reserve> reserves)? reservered,
     TResult Function(String message)? error,
   }) {
     return loading?.call();
@@ -795,6 +958,7 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Offer offer, bool isReserved)? loaded,
+    TResult Function(List<Reserve> reserves)? reservered,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -810,6 +974,7 @@ class _$_Loading implements _Loading {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Reserved value) reservered,
     required TResult Function(_Error value) error,
   }) {
     return loading(this);
@@ -821,6 +986,7 @@ class _$_Loading implements _Loading {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_Reserved value)? reservered,
     TResult Function(_Error value)? error,
   }) {
     return loading?.call(this);
@@ -832,6 +998,7 @@ class _$_Loading implements _Loading {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_Reserved value)? reservered,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -931,6 +1098,7 @@ class _$_Loaded implements _Loaded {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(Offer offer, bool isReserved) loaded,
+    required TResult Function(List<Reserve> reserves) reservered,
     required TResult Function(String message) error,
   }) {
     return loaded(offer, isReserved);
@@ -942,6 +1110,7 @@ class _$_Loaded implements _Loaded {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Offer offer, bool isReserved)? loaded,
+    TResult Function(List<Reserve> reserves)? reservered,
     TResult Function(String message)? error,
   }) {
     return loaded?.call(offer, isReserved);
@@ -953,6 +1122,7 @@ class _$_Loaded implements _Loaded {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Offer offer, bool isReserved)? loaded,
+    TResult Function(List<Reserve> reserves)? reservered,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -968,6 +1138,7 @@ class _$_Loaded implements _Loaded {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Reserved value) reservered,
     required TResult Function(_Error value) error,
   }) {
     return loaded(this);
@@ -979,6 +1150,7 @@ class _$_Loaded implements _Loaded {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_Reserved value)? reservered,
     TResult Function(_Error value)? error,
   }) {
     return loaded?.call(this);
@@ -990,6 +1162,7 @@ class _$_Loaded implements _Loaded {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_Reserved value)? reservered,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -1007,6 +1180,156 @@ abstract class _Loaded implements ReserveOfferState {
   bool get isReserved;
   @JsonKey(ignore: true)
   _$LoadedCopyWith<_Loaded> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$ReservedCopyWith<$Res> {
+  factory _$ReservedCopyWith(_Reserved value, $Res Function(_Reserved) then) =
+      __$ReservedCopyWithImpl<$Res>;
+  $Res call({List<Reserve> reserves});
+}
+
+/// @nodoc
+class __$ReservedCopyWithImpl<$Res>
+    extends _$ReserveOfferStateCopyWithImpl<$Res>
+    implements _$ReservedCopyWith<$Res> {
+  __$ReservedCopyWithImpl(_Reserved _value, $Res Function(_Reserved) _then)
+      : super(_value, (v) => _then(v as _Reserved));
+
+  @override
+  _Reserved get _value => super._value as _Reserved;
+
+  @override
+  $Res call({
+    Object? reserves = freezed,
+  }) {
+    return _then(_Reserved(
+      reserves == freezed
+          ? _value.reserves
+          : reserves // ignore: cast_nullable_to_non_nullable
+              as List<Reserve>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_Reserved implements _Reserved {
+  const _$_Reserved(this.reserves);
+
+  @override
+  final List<Reserve> reserves;
+
+  @override
+  String toString() {
+    return 'ReserveOfferState.reservered(reserves: $reserves)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _Reserved &&
+            const DeepCollectionEquality().equals(other.reserves, reserves));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(reserves));
+
+  @JsonKey(ignore: true)
+  @override
+  _$ReservedCopyWith<_Reserved> get copyWith =>
+      __$ReservedCopyWithImpl<_Reserved>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(Offer offer, bool isReserved) loaded,
+    required TResult Function(List<Reserve> reserves) reservered,
+    required TResult Function(String message) error,
+  }) {
+    return reservered(reserves);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(Offer offer, bool isReserved)? loaded,
+    TResult Function(List<Reserve> reserves)? reservered,
+    TResult Function(String message)? error,
+  }) {
+    return reservered?.call(reserves);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(Offer offer, bool isReserved)? loaded,
+    TResult Function(List<Reserve> reserves)? reservered,
+    TResult Function(String message)? error,
+    required TResult orElse(),
+  }) {
+    if (reservered != null) {
+      return reservered(reserves);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Reserved value) reservered,
+    required TResult Function(_Error value) error,
+  }) {
+    return reservered(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Reserved value)? reservered,
+    TResult Function(_Error value)? error,
+  }) {
+    return reservered?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Reserved value)? reservered,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (reservered != null) {
+      return reservered(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Reserved implements ReserveOfferState {
+  const factory _Reserved(List<Reserve> reserves) = _$_Reserved;
+
+  List<Reserve> get reserves;
+  @JsonKey(ignore: true)
+  _$ReservedCopyWith<_Reserved> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1074,6 +1397,7 @@ class _$_Error implements _Error {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(Offer offer, bool isReserved) loaded,
+    required TResult Function(List<Reserve> reserves) reservered,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -1085,6 +1409,7 @@ class _$_Error implements _Error {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Offer offer, bool isReserved)? loaded,
+    TResult Function(List<Reserve> reserves)? reservered,
     TResult Function(String message)? error,
   }) {
     return error?.call(message);
@@ -1096,6 +1421,7 @@ class _$_Error implements _Error {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Offer offer, bool isReserved)? loaded,
+    TResult Function(List<Reserve> reserves)? reservered,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -1111,6 +1437,7 @@ class _$_Error implements _Error {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Reserved value) reservered,
     required TResult Function(_Error value) error,
   }) {
     return error(this);
@@ -1122,6 +1449,7 @@ class _$_Error implements _Error {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_Reserved value)? reservered,
     TResult Function(_Error value)? error,
   }) {
     return error?.call(this);
@@ -1133,6 +1461,7 @@ class _$_Error implements _Error {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_Reserved value)? reservered,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {

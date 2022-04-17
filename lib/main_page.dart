@@ -4,7 +4,7 @@ import 'package:fancy_bottom_navigation/fancy_bottom_navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:mady/features/near_offers/presentation/pages/near_offers_page.dart';
 import 'package:mady/features/offers/presentation/pages/offers_page.dart';
-import 'package:mady/features/reserve_offer/presentation/pages/reserved_offers.dart';
+import 'package:mady/features/reserve_offer/presentation/pages/reserved_offers_page.dart';
 import 'package:mady/features/profile_page.dart';
 
 class MainPage extends StatefulWidget {
@@ -62,6 +62,8 @@ class _MainPageState extends State<MainPage> {
       appBar: AppBar(
         title: Text(_tabs[position].label ?? "مادی"),
         centerTitle: true,
+        elevation: 10,
+        shadowColor: Colors.purple.shade800,
         automaticallyImplyLeading: false,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(

@@ -45,6 +45,7 @@ class ReserveOfferPage extends StatelessWidget {
                 error: (error) => Center(child: Text(error)),
                 loaded: (offer, isReserved) =>
                     content(context, offer, isReserved),
+                reservered: (reserves) => const Center(child: Text('')),
               );
             },
           ),
