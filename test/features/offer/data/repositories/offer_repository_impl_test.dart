@@ -6,7 +6,6 @@ import 'package:mady/core/errors/exception.dart';
 import 'package:mady/core/errors/failure.dart';
 import 'package:mady/core/network/api_param.dart';
 import 'package:mady/core/network/network_info.dart';
-import 'package:mady/features/offers/data/datasources/offer_local_datasource.dart';
 import 'package:mady/features/offers/data/datasources/offer_remote_datasource.dart';
 import 'package:mady/features/offers/data/models/category_offers_list.dart';
 import 'package:mady/features/offers/data/repositories/offer_repository_impl.dart';
@@ -16,20 +15,17 @@ import 'package:mockito/mockito.dart';
 import '../../../../fixtures/fixture_reader.dart';
 import 'offer_repository_impl_test.mocks.dart';
 
-@GenerateMocks([OfferRemoteDataSource, OfferLocalDataSource, NetworkInfo])
+@GenerateMocks([OfferRemoteDataSource, NetworkInfo])
 void main() {
   late MockOfferRemoteDataSource remoteDataSource;
-  late MockOfferLocalDataSource localDataSource;
   late NetworkInfo networkInfo;
   late OfferRepositoryImpl repository;
 
   setUp(() {
     networkInfo = MockNetworkInfo();
     remoteDataSource = MockOfferRemoteDataSource();
-    localDataSource = MockOfferLocalDataSource();
     repository = OfferRepositoryImpl(
       remoteDataSource: remoteDataSource,
-      localDataSource: localDataSource,
       networkInfo: networkInfo,
     );
   });
@@ -52,7 +48,7 @@ void main() {
       when(remoteDataSource.getOffers(tParams.value))
           .thenAnswer((realInvocation) async => tOffersList);
       // act
-      final result = await repository.getAllOffers(tParams);
+      final result = await repository.getOffers(tParams);
       // assert
       expect(result, Left(GeneralFailure(message: noInternt)));
       verify(networkInfo.isConnected);
@@ -67,7 +63,7 @@ void main() {
         when(remoteDataSource.getOffers(tParams.value))
             .thenAnswer((realInvocation) async => tOffersList);
         //act
-        final result = await repository.getAllOffers(tParams);
+        final result = await repository.getOffers(tParams);
         //assert
         expect(result, Right(tOffersList.offers));
         verify(remoteDataSource.getOffers(tParams.value));
@@ -82,7 +78,7 @@ void main() {
         when(remoteDataSource.getOffers(tParams.value))
             .thenThrow(ServerException(message: noInternt));
         //act
-        final result = await repository.getAllOffers(tParams);
+        final result = await repository.getOffers(tParams);
         //assert
         expect(result, Left(GeneralFailure(message: noInternt)));
       },

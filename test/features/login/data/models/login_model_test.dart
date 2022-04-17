@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mady/features/login/data/models/login_model.dart';
-import 'package:mady/features/login/domain/entities/user.dart';
+import 'package:mady/features/user/domain/entities/user.dart';
 
 import '../../../../fixtures/fixture_reader.dart';
 

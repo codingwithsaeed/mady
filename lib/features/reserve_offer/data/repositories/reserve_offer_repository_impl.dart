@@ -3,8 +3,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:mady/core/errors/exception.dart';
 import 'package:mady/core/network/network_info.dart';
-import 'package:mady/features/login/domain/entities/user.dart';
-import 'package:mady/features/reserve_offer/data/datasources/reserve_offer_local_datasource.dart';
 import 'package:mady/features/reserve_offer/data/datasources/reserve_offer_remote_datasource.dart';
 import 'package:mady/features/reserve_offer/domain/entities/offer_details.dart';
 import 'package:mady/core/network/api_param.dart';
@@ -15,15 +13,12 @@ import 'package:mady/features/reserve_offer/domain/repositories/reserve_offer_re
 @Injectable(as: ReserveOfferRepository)
 class ReserveOfferRepositoryImpl implements ReserveOfferRepository {
   final ReserveOfferRemoteDataSource _remoteDataSource;
-  final ReserveOfferLocalDataSource _localDataSource;
   final NetworkInfo _networkInfo;
 
   ReserveOfferRepositoryImpl({
     required ReserveOfferRemoteDataSource remoteDataSource,
-    required ReserveOfferLocalDataSource localDataSource,
     required NetworkInfo networkInfo,
   })  : _remoteDataSource = remoteDataSource,
-        _localDataSource = localDataSource,
         _networkInfo = networkInfo;
 
   @override
@@ -62,10 +57,4 @@ class ReserveOfferRepositoryImpl implements ReserveOfferRepository {
     }
   }
 
-  @override
-  Future<Either<Failure, User>> getUser(String key) async {
-    final result = await _localDataSource.getUser(key);
-    if (result == null) return Left(GeneralFailure(message: 'کاربر پیدا نشد'));
-    return Right(result);
-  }
 }

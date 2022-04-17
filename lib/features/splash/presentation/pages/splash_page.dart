@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mady/core/utils/show_snackbar.dart';
 import 'package:mady/di/injection.dart';
 import 'package:mady/features/login/presentation/pages/login_page.dart';
-import 'package:mady/features/main_page.dart';
+import 'package:mady/main_page.dart';
 import 'package:mady/features/splash/presentation/cubit/splash_cubit.dart';
 
 class SplashPage extends StatelessWidget {

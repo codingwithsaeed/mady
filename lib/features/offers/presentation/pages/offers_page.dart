@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mady/core/utils/show_snackbar.dart';
@@ -12,7 +10,6 @@ import 'package:mady/features/reserve_offer/presentation/pages/reserve_offer_pag
 
 class OffersPage extends StatelessWidget {
   static const id = 'OffersPage';
-
   const OffersPage({Key? key}) : super(key: key);
 
   @override
@@ -20,8 +17,39 @@ class OffersPage extends StatelessWidget {
     return BlocProvider(
       create: (context) =>
           getIt<OfferBloc>()..add(const OfferEvent.getOffers()),
-      child: buildBody(context),
+      child: const OffersPageImpl(),
     );
+  }
+}
+
+class OffersPageImpl extends StatefulWidget {
+  const OffersPageImpl({Key? key}) : super(key: key);
+
+  @override
+  State<OffersPageImpl> createState() => _OffersPageImplState();
+}
+
+class _OffersPageImplState extends State<OffersPageImpl> with AutomaticKeepAliveClientMixin {
+  @override
+  void initState() {
+    context.read<OfferBloc>().add(const OfferEvent.getOffers());
+    super.initState();
+  }
+
+  @override
+  bool get wantKeepAlive => true;
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return RefreshIndicator(
+        onRefresh: () async =>
+            context.read<OfferBloc>().add(const OfferEvent.getOffers()),
+        child: BlocConsumer<OfferBloc, OfferState>(
+          builder: blocBuilder,
+          listener: blocListener,
+        ),
+      );
   }
 
   Widget buildBody(BuildContext context) => RefreshIndicator(
@@ -54,7 +82,6 @@ class OffersPage extends StatelessWidget {
 
   void blocListener(BuildContext context, OfferState state) {
     state.whenOrNull(
-      loaded: (list) => log(list.toString()),
       error: (message) => showSnackbar(context, message: message),
     );
   }

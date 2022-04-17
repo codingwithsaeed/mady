@@ -4,10 +4,10 @@ import 'package:injectable/injectable.dart';
 import 'package:mady/core/errors/exception.dart';
 import 'package:mady/core/network/api_provider.dart';
 import 'package:mady/features/login/data/models/login_model.dart';
-import 'package:mady/features/login/domain/entities/user.dart';
+import 'package:mady/features/user/domain/entities/user.dart';
 
 abstract class LoginRemoteDatasource {
-  Future<User> authenticate(Map<String, dynamic> params);
+  Future<User> call(Map<String, dynamic> params);
 }
 
 @Injectable(as: LoginRemoteDatasource)
@@ -17,7 +17,7 @@ class LoginRemoteDatasourceImpl implements LoginRemoteDatasource {
   LoginRemoteDatasourceImpl(this._apiProvider);
 
   @override
-  Future<User> authenticate(Map<String, dynamic> params) async {
+  Future<User> call(Map<String, dynamic> params) async {
     final resp = await _apiProvider.post(currentDataUrl, params: params);
     final model = LoginModel.fromJson(jsonDecode(resp.body));
     if (model.success == 1) return model.user!;

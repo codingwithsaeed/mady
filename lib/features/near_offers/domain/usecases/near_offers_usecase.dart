@@ -1,11 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
+import 'package:mady/core/errors/failure.dart';
 import 'package:mady/core/network/api_param.dart';
-import 'package:mady/features/login/domain/entities/user.dart';
 import 'package:mady/features/near_offers/domain/repositories/near_offers_repository.dart';
 import 'package:mady/features/offers/domain/entities/offer/offer.dart';
-
-import '../../../../core/errors/failure.dart';
 
 @injectable
 class NearOffersUsecase {
@@ -13,9 +11,7 @@ class NearOffersUsecase {
 
   final NearOffersRepository _repository;
 
-  Future<Either<Failure, List<Offer>>> getNearOffers(ApiParam params) async =>
-      await _repository.getAllOffers(params);
+  Future<Either<Failure, List<Offer>>> getOffers(ApiParam params) async =>
+      await _repository.getOffers(params);
 
-  Future<Either<Failure, User>> getUser(String key) async =>
-      await _repository.getUser(key);
 }

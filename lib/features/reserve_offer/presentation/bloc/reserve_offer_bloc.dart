@@ -4,9 +4,10 @@ import 'package:injectable/injectable.dart';
 import 'package:mady/core/errors/failure.dart';
 import 'package:mady/core/network/api_param.dart';
 import 'package:mady/core/utils/consts.dart';
-import 'package:mady/features/login/domain/entities/user.dart';
+import 'package:mady/features/user/domain/entities/user.dart';
 import 'package:mady/features/offers/domain/entities/offer/offer.dart';
 import 'package:mady/features/reserve_offer/domain/usecases/reserve_offer_usecase.dart';
+import 'package:mady/features/user/domain/usecases/user_usecase.dart';
 
 part 'reserve_offer_event.dart';
 part 'reserve_offer_state.dart';
@@ -14,14 +15,20 @@ part 'reserve_offer_bloc.freezed.dart';
 
 @injectable
 class ReserveOfferBloc extends Bloc<ReserveOfferEvent, ReserveOfferState> {
-  final ReserveOfferUsecase _usecase;
+  final ReserveOfferUsecase _reserveUsecase;
+  final UserUsecase _userUsecase;
 
-  ReserveOfferBloc(this._usecase) : super(const _Initial()) {
+  ReserveOfferBloc({
+    required ReserveOfferUsecase reserveUsecase,
+    required UserUsecase userUsecase,
+  })  : _reserveUsecase = reserveUsecase,
+        _userUsecase = userUsecase,
+        super(const ReserveOfferState.initial()) {
     on<_GetDetails>((event, emit) async {
       emit(const ReserveOfferState.loading());
       User user = await getUser(emit);
 
-      final result = await _usecase.getDetails(ApiParam(value: {
+      final result = await _reserveUsecase.getDetails(ApiParam(value: {
         'action': 'get_offer_details',
         'oid': event.offer.oid,
         'uid': user.uid,
@@ -39,7 +46,7 @@ class ReserveOfferBloc extends Bloc<ReserveOfferEvent, ReserveOfferState> {
       emit(const ReserveOfferState.loading());
       User user = await getUser(emit);
 
-      final result = await _usecase.reserve(ApiParam(value: {
+      final result = await _reserveUsecase.reserve(ApiParam(value: {
         'action': 'reserve_offer',
         'uid': user.uid,
         'oid': event.offer.oid,
@@ -64,7 +71,7 @@ class ReserveOfferBloc extends Bloc<ReserveOfferEvent, ReserveOfferState> {
 
   Future<User> getUser(Emitter<ReserveOfferState> emit) async {
     late User user;
-    final userRes = await _usecase.getUser(userKey);
+    final userRes = await _userUsecase.getUser(userKey);
     userRes.fold((error) {
       emit(ReserveOfferState.error((error as GeneralFailure).message));
       return;

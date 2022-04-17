@@ -9,7 +9,7 @@ import 'package:mady/features/login/data/datasources/login_local_datasource.dart
     as _i6;
 import 'package:mady/features/login/data/datasources/login_remote_datasource.dart'
     as _i3;
-import 'package:mady/features/login/domain/entities/user.dart' as _i2;
+import 'package:mady/features/user/domain/entities/user.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -34,8 +34,8 @@ class MockLoginRemoteDatasource extends _i1.Mock
   }
 
   @override
-  _i4.Future<_i2.User> authenticate(Map<String, dynamic>? params) =>
-      (super.noSuchMethod(Invocation.method(#authenticate, [params]),
+  _i4.Future<_i2.User> call(Map<String, dynamic>? params) =>
+      (super.noSuchMethod(Invocation.method(#call, [params]),
               returnValue: Future<_i2.User>.value(_FakeUser_0()))
           as _i4.Future<_i2.User>);
 }

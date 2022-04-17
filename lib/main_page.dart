@@ -69,13 +69,6 @@ class _MainPageState extends State<MainPage> {
             bottomLeft: Radius.circular(15),
           ),
         ),
-        actions: [
-          if (position == 1)
-            IconButton(
-              icon: const Icon(Icons.location_on_rounded),
-              onPressed: () {},
-            ),
-        ],
       ),
       body: PageView(
         controller: _controller,

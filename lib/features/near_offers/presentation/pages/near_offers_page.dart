@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:mady/core/utils/consts.dart';
 import 'package:mady/core/utils/show_snackbar.dart';
 import 'package:mady/core/x/x_widgets.dart';
 import 'package:mady/di/injection.dart';
 import 'package:mady/features/near_offers/presentation/cubit/near_offers_cubit.dart';
 import 'package:mady/features/near_offers/presentation/cubit/near_offers_state.dart';
+import 'package:mady/features/near_offers/presentation/pages/select_address_page.dart';
 import 'package:mady/features/offers/domain/entities/offer/offer.dart';
 import 'package:mady/features/reserve_offer/presentation/pages/reserve_offer_page.dart';
 
@@ -44,11 +47,28 @@ class _OffersPageImplState extends State<OffersPageImpl>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return RefreshIndicator(
-      onRefresh: () async => refreshData(),
-      child: BlocConsumer<NearOffersCubit, NearOffersState>(
-        listener: cubitListener,
-        builder: cubitBuilder,
+    return Scaffold(
+      body: RefreshIndicator(
+        onRefresh: () async => refreshData(),
+        child: BlocConsumer<NearOffersCubit, NearOffersState>(
+          listener: cubitListener,
+          builder: cubitBuilder,
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          final user = await context.read<NearOffersCubit>().getUser(userKey);
+          final result = await Navigator.pushNamed(
+              context, SellectAddressPage.id,
+              arguments: user);
+          if (result != null && result is LatLng) {
+            await context.read<NearOffersCubit>().updateUserLocation(
+                  result.latitude.toString(),
+                  result.longitude.toString(),
+                );
+          }
+        },
+        child: const Icon(Icons.location_on_sharp),
       ),
     );
   }
@@ -57,7 +77,9 @@ class _OffersPageImplState extends State<OffersPageImpl>
       state.when(
           initial: () => buildEmptyBody(''),
           loading: () => buildLoading(),
-          loaded: (offers) => buildOffersList(context, offers),
+          loaded: (offers) => offers.isEmpty
+              ? buildEmptyBody('آفری در ۱۰ کیلومتری شما وجود ندارد')
+              : buildOffersList(context, offers),
           error: (error) => buildEmptyBody(error));
 
   void cubitListener(context, state) {

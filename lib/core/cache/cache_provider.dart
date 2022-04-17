@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:injectable/injectable.dart';
-import 'package:mady/features/login/domain/entities/user.dart';
+import 'package:mady/features/user/domain/entities/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class CacheProvider {
@@ -21,8 +21,10 @@ class CacheProviderImpl implements CacheProvider {
   Future<bool> deleteUser(String key) async => await _prefs.remove(key);
 
   @override
-  Future<bool> saveUser(String key, Map<String, dynamic> value) async =>
-      await _prefs.setString(key, jsonEncode(value));
+  Future<bool> saveUser(String key, Map<String, dynamic> value) async {
+    if (_prefs.containsKey(key)) _prefs.remove(key);
+    return await _prefs.setString(key, jsonEncode(value));
+  }
 
   @override
   bool isLoggedIn(String key) => _prefs.containsKey(key);

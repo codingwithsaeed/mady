@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:mady/features/login/domain/entities/user.dart';
+import 'package:mady/features/user/domain/entities/user.dart';
 
 part 'login_model.freezed.dart';
 part 'login_model.g.dart';

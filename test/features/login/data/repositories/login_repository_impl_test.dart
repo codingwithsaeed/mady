@@ -7,7 +7,7 @@ import 'package:mady/core/network/network_info.dart';
 import 'package:mady/features/login/data/datasources/login_local_datasource.dart';
 import 'package:mady/features/login/data/datasources/login_remote_datasource.dart';
 import 'package:mady/features/login/data/repositories/login_repository_impl.dart';
-import 'package:mady/features/login/domain/entities/user.dart';
+import 'package:mady/features/user/domain/entities/user.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'login_repository_impl_test.mocks.dart';
@@ -45,9 +45,9 @@ void main() {
       () async {
         //arrange
         when(networkInfo.isConnected).thenAnswer((_) async => false);
-        when(remoteDatasource.authenticate(any)).thenAnswer((_) async => tUser);
+        when(remoteDatasource.call(any)).thenAnswer((_) async => tUser);
         //act
-        final result = await sut.authenticate(tApiparams);
+        final result = await sut.call(tApiparams);
         //assert
         expect(result, Left(GeneralFailure(message: noInternt)));
         verify(networkInfo.isConnected);
@@ -61,12 +61,12 @@ void main() {
         //arrange
         when(networkInfo.isConnected).thenAnswer((_) async => true);
         when(localDatasource.saveUser(any, any)).thenAnswer((_) async => true);
-        when(remoteDatasource.authenticate(any)).thenAnswer((_) async => tUser);
+        when(remoteDatasource.call(any)).thenAnswer((_) async => tUser);
         //act
-        final result = await sut.authenticate(tApiparams);
+        final result = await sut.call(tApiparams);
         //assert
         expect(result, const Right(tUser));
-        verify(remoteDatasource.authenticate(tParams));
+        verify(remoteDatasource.call(tParams));
         verifyNoMoreInteractions(remoteDatasource);
       },
     );
@@ -75,10 +75,10 @@ void main() {
       () async {
         //arrange
         when(networkInfo.isConnected).thenAnswer((_) async => true);
-        when(remoteDatasource.authenticate(any))
+        when(remoteDatasource.call(any))
             .thenThrow(ServerException(message: noInternt));
         //act
-        final result = await sut.authenticate(tApiparams);
+        final result = await sut.call(tApiparams);
         //assert
         expect(result, Left(GeneralFailure(message: noInternt)));
       },

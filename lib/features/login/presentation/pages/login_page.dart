@@ -8,7 +8,7 @@ import 'package:mady/core/utils/show_snackbar.dart';
 import 'package:mady/core/x/x_widgets.dart';
 import 'package:mady/di/injection.dart';
 import 'package:mady/features/login/presentation/bloc/login_bloc.dart';
-import 'package:mady/features/main_page.dart';
+import 'package:mady/main_page.dart';
 
 class LoginPage extends StatefulWidget {
   static const String id = 'LoginPage';

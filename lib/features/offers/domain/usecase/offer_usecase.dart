@@ -2,7 +2,6 @@ import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:mady/core/errors/failure.dart';
 import 'package:mady/core/network/api_param.dart';
-import 'package:mady/features/login/domain/entities/user.dart';
 import 'package:mady/features/offers/domain/entities/category_offers/category_offers.dart';
 import 'package:mady/features/offers/domain/repositories/offer_repository.dart';
 
@@ -13,9 +12,7 @@ class OfferUsecase {
   OfferUsecase(this._repository);
 
   Future<Either<Failure, List<CategoryOffers>>> getAllOffers(
-    ApiParam params,
-  ) async =>
-      await _repository.getAllOffers(params);
-
-  Future<Either<Failure, User>> getUser(String key) async => await _repository.getUser(key);
+      ApiParam params) async {
+    return await _repository.getOffers(params);
+  }
 }

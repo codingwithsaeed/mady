@@ -6,8 +6,6 @@ import 'package:mady/core/errors/exception.dart';
 import 'package:mady/core/errors/failure.dart';
 import 'package:mady/core/network/api_param.dart';
 import 'package:mady/core/network/network_info.dart';
-import 'package:mady/features/login/domain/entities/user.dart';
-import 'package:mady/features/near_offers/data/datasources/near_offers_local_datasource.dart';
 import 'package:mady/features/near_offers/data/datasources/near_offers_remote_datasource.dart';
 import 'package:mady/features/near_offers/domain/repositories/near_offers_repository.dart';
 import 'package:mady/features/offers/domain/entities/offer/offer.dart';
@@ -15,19 +13,16 @@ import 'package:mady/features/offers/domain/entities/offer/offer.dart';
 @Injectable(as: NearOffersRepository)
 class NearOfferRepositoryImpl extends NearOffersRepository {
   final NearOffersRemoteDataSource _remoteDataSource;
-  final NearOffersLocalDataSource _localDataSource;
   final NetworkInfo _networkInfo;
 
   NearOfferRepositoryImpl({
     required NearOffersRemoteDataSource remoteDataSource,
-    required NearOffersLocalDataSource localDataSource,
     required NetworkInfo networkInfo,
   })  : _remoteDataSource = remoteDataSource,
-        _localDataSource = localDataSource,
         _networkInfo = networkInfo;
 
   @override
-  Future<Either<Failure, List<Offer>>> getAllOffers(ApiParam params) async {
+  Future<Either<Failure, List<Offer>>> getOffers(ApiParam params) async {
     if (!(await _networkInfo.isConnected))
       return Left(GeneralFailure(message: noInternt));
     try {
@@ -40,12 +35,5 @@ class NearOfferRepositoryImpl extends NearOffersRepository {
     } on ServerException catch (e) {
       return Left(GeneralFailure(message: e.message));
     }
-  }
-
-  @override
-  Future<Either<Failure, User>> getUser(String key) async {
-    final result = await _localDataSource.getUser(key);
-    if (result == null) return Left(GeneralFailure(message: 'کاربر پیدا نشد'));
-    return Right(result);
   }
 }

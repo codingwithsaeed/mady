@@ -3,7 +3,7 @@ import 'package:http/http.dart';
 import 'package:mady/core/errors/exception.dart';
 import 'package:mady/core/network/api_provider.dart';
 import 'package:mady/features/login/data/datasources/login_remote_datasource.dart';
-import 'package:mady/features/login/domain/entities/user.dart';
+import 'package:mady/features/user/domain/entities/user.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import '../../../../fixtures/fixture_reader.dart';
@@ -35,7 +35,7 @@ void main() {
         when(provider.post(any, params: anyNamed('params'))).thenAnswer(
             (_) async => Response(fixture('login/success_login.json'), 200));
         //act
-        await sut.authenticate(tParams);
+        await sut.call(tParams);
         //assert
         verify(provider.post(currentDataUrl, params: tParams));
         verifyNoMoreInteractions(provider);
@@ -49,7 +49,7 @@ void main() {
         when(provider.post(any, params: anyNamed('params'))).thenAnswer(
             (_) async => Response(fixture('login/success_login.json'), 200));
         //act
-        final result = await sut.authenticate(tParams);
+        final result = await sut.call(tParams);
         //assert
         expect(result, tUser);
       },
@@ -62,7 +62,7 @@ void main() {
         when(provider.post(any, params: anyNamed('params'))).thenAnswer(
             (_) async => Response(fixture('login/failed_login.json'), 200));
         //act
-        final result = sut.authenticate;
+        final result = sut.call;
         //assert
         expect(result(tParams), throwsA(const TypeMatcher<ServerException>()));
       },
