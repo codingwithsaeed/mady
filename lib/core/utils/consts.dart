@@ -21,8 +21,8 @@ final List<DropdownMenuItem<String>> reserveListCount = [
 ];
 
 const List<String> _reserveStatusTitle = [
-  "تحویل داده نشده",
-  "تحویل داده شده",
+  "دریافت نشده",
+  "دریافت شده",
   "لغو شده",
 ];
 

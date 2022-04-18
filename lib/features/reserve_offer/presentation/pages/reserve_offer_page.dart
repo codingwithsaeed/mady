@@ -31,8 +31,7 @@ class ReserveOfferPage extends StatelessWidget {
     return CustomScrollView(
       slivers: [
         buildAppbar(offer),
-        SliverFillRemaining(
-          hasScrollBody: false,
+        SliverToBoxAdapter(
           child: BlocConsumer<ReserveOfferBloc, ReserveOfferState>(
             listener: (context, state) {
               state.whenOrNull(

@@ -7,6 +7,7 @@ import 'package:mady/core/x/x_widgets.dart';
 import 'package:mady/di/injection.dart';
 import 'package:mady/features/reserve_offer/domain/entities/reserve/reserve.dart';
 import 'package:mady/features/reserve_offer/presentation/bloc/reserve_offer_bloc.dart';
+import 'package:mady/features/reserve_offer/presentation/pages/reserve_details_page.dart';
 
 class ReservedOffersPage extends StatelessWidget {
   const ReservedOffersPage({Key? key}) : super(key: key);
@@ -48,7 +49,8 @@ class ReservedOffersPage extends StatelessWidget {
             itemCount: list.length,
             itemBuilder: (context, index) => ReserveListItem(
               reserve: list[index],
-              onTap: () => log(list[index].toString()),
+              onTap: () => Navigator.pushNamed(context, ReserveDetailsPage.id,
+                  arguments: list[index]),
             ),
           ),
           onRefresh: () async => await getReserves(context));

@@ -5,6 +5,8 @@ import 'package:mady/core/utils/theme.dart';
 import 'package:mady/di/injection.dart';
 import 'package:mady/features/login/presentation/pages/login_page.dart';
 import 'package:mady/features/near_offers/presentation/pages/select_address_page.dart';
+import 'package:mady/features/reserve_offer/domain/entities/reserve/reserve.dart';
+import 'package:mady/features/reserve_offer/presentation/pages/reserve_details_page.dart';
 import 'package:mady/features/user/domain/entities/user.dart';
 import 'package:mady/main_page.dart';
 import 'package:mady/features/reserve_offer/presentation/pages/reserve_offer_page.dart';
@@ -39,7 +41,14 @@ class MyApp extends StatelessWidget {
                 user: settings.arguments as User,
               ),
             );
+          } else if (settings.name == ReserveDetailsPage.id) {
+            return MaterialPageRoute(
+              builder: (context) => ReserveDetailsPage(
+                reserve: settings.arguments as Reserve,
+              ),
+            );
           }
+
           return null;
         },
         scrollBehavior: const MaterialScrollBehavior().copyWith(
