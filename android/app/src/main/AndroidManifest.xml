@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ir.codingwithsaeed.mady">
    <application
-        android:label="mady"
+        android:label="مادی"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
