@@ -18,7 +18,10 @@ class CacheProviderImpl implements CacheProvider {
   CacheProviderImpl(this._prefs);
 
   @override
-  Future<bool> deleteUser(String key) async => await _prefs.remove(key);
+  Future<bool> deleteUser(String key) async {
+    if (_prefs.containsKey(key)) return await _prefs.remove(key);
+    return false;
+  }
 
   @override
   Future<bool> saveUser(String key, Map<String, dynamic> value) async {

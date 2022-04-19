@@ -29,7 +29,8 @@ class OffersPageImpl extends StatefulWidget {
   State<OffersPageImpl> createState() => _OffersPageImplState();
 }
 
-class _OffersPageImplState extends State<OffersPageImpl> with AutomaticKeepAliveClientMixin {
+class _OffersPageImplState extends State<OffersPageImpl>
+    with AutomaticKeepAliveClientMixin {
   @override
   void initState() {
     context.read<OfferBloc>().add(const OfferEvent.getOffers());
@@ -42,24 +43,11 @@ class _OffersPageImplState extends State<OffersPageImpl> with AutomaticKeepAlive
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return RefreshIndicator(
-        onRefresh: () async =>
-            context.read<OfferBloc>().add(const OfferEvent.getOffers()),
-        child: BlocConsumer<OfferBloc, OfferState>(
-          builder: blocBuilder,
-          listener: blocListener,
-        ),
-      );
+    return BlocConsumer<OfferBloc, OfferState>(
+      builder: blocBuilder,
+      listener: blocListener,
+    );
   }
-
-  Widget buildBody(BuildContext context) => RefreshIndicator(
-        onRefresh: () async =>
-            context.read<OfferBloc>().add(const OfferEvent.getOffers()),
-        child: BlocConsumer<OfferBloc, OfferState>(
-          builder: blocBuilder,
-          listener: blocListener,
-        ),
-      );
 
   Widget blocBuilder(BuildContext context, OfferState state) {
     return state.when(
@@ -71,7 +59,18 @@ class _OffersPageImplState extends State<OffersPageImpl> with AutomaticKeepAlive
   }
 
   Widget buildError(String message) => Center(
-        child: Text(message),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(message, style: Theme.of(context).textTheme.headline6),
+            const SizedBox(height: 10),
+            TextButton(
+              child: const Text('تلاش مجدد'),
+              onPressed: () =>
+                  context.read<OfferBloc>().add(const OfferEvent.getOffers()),
+            ),
+          ],
+        ),
       );
 
   Widget buildLoading() => Center(
@@ -87,25 +86,31 @@ class _OffersPageImplState extends State<OffersPageImpl> with AutomaticKeepAlive
   }
 
   Widget buildList(BuildContext context, List<CategoryOffers> list) =>
-      ListView.builder(
-        itemBuilder: ((_, index) => Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 4.0, vertical: 0.0),
-              child: CategoryItem(
-                category: list[index],
-                onTap: (offerIndex) async {
-                  final result = await Navigator.pushNamed(
-                    context,
-                    ReserveOfferPage.id,
-                    arguments: list[index].data[offerIndex],
-                  );
-                  if (result != null && result as bool) {
-                    context.read<OfferBloc>().add(const OfferEvent.getOffers());
-                  }
-                },
-              ),
-            )),
-        itemCount: list.length,
+      RefreshIndicator(
+        onRefresh: () async =>
+            context.read<OfferBloc>().add(const OfferEvent.getOffers()),
+        child: ListView.builder(
+          itemBuilder: ((_, index) => Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 4.0, vertical: 0.0),
+                child: CategoryItem(
+                  category: list[index],
+                  onTap: (offerIndex) async {
+                    final result = await Navigator.pushNamed(
+                      context,
+                      ReserveOfferPage.id,
+                      arguments: list[index].data[offerIndex],
+                    );
+                    if (result != null && result as bool) {
+                      context
+                          .read<OfferBloc>()
+                          .add(const OfferEvent.getOffers());
+                    }
+                  },
+                ),
+              )),
+          itemCount: list.length,
+        ),
       );
 }
 

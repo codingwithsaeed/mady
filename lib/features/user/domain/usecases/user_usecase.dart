@@ -13,6 +13,8 @@ class UserUsecase {
 
   Future<Either<Failure, User>> getUser(String key) async =>
       await _repository.getUser(key);
+  Future<Either<Failure, bool>> removeUser(String key) async =>
+      await _repository.removeUser(key);
 
   Future<Either<Failure, bool>> saveUser(String key, User user) async =>
       await _repository.saveUser(key, user);

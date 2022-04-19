@@ -59,4 +59,11 @@ class UserRepositoryImpl implements UserRepository {
       return Left(GeneralFailure(message: e.message));
     }
   }
+
+  @override
+  Future<Either<Failure, bool>> removeUser(String key) async {
+    final result = await _localDatasource.removeUser(key);
+    if (result) return Right(result);
+    return Left(GeneralFailure(message: 'کاربر حذف نشد'));
+  }
 }

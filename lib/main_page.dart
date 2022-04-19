@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:mady/features/near_offers/presentation/pages/near_offers_page.dart';
 import 'package:mady/features/offers/presentation/pages/offers_page.dart';
 import 'package:mady/features/reserve_offer/presentation/pages/reserved_offers_page.dart';
-import 'package:mady/features/profile_page.dart';
+import 'package:mady/features/profile/presentation/pages/more_page.dart';
 
 class MainPage extends StatefulWidget {
   static const id = 'MainPage';
@@ -22,7 +22,7 @@ class _MainPageState extends State<MainPage> {
     OffersPage(),
     NearOffersPage(),
     ReservedOffersPage(),
-    ProfilePage()
+    MorePage()
   ];
 
   final _tabs = [
@@ -35,12 +35,12 @@ class _MainPageState extends State<MainPage> {
       label: 'در نزدیکی',
     ),
     const BottomNavigationBarItem(
-      icon: Icon(Icons.heart_broken_rounded),
+      icon: Icon(Icons.shopping_bag_rounded),
       label: 'رزروها',
     ),
     const BottomNavigationBarItem(
-      icon: Icon(Icons.location_history),
-      label: 'پروفایل',
+      icon: Icon(Icons.more_horiz_rounded),
+      label: 'بیشتر',
     ),
   ];
 

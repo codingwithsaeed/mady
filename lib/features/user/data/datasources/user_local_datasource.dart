@@ -5,6 +5,7 @@ import 'package:mady/features/user/domain/entities/user.dart';
 abstract class UserLocalDatasource {
   Future<User?> getUser(String key);
   Future<bool> saveUser(String key, User user);
+  Future<bool> removeUser(String key);
 }
 
 @Injectable(as: UserLocalDatasource)
@@ -19,4 +20,8 @@ class UserLocalDatasourceImpl implements UserLocalDatasource {
   @override
   Future<bool> saveUser(String key, User user) async =>
       await _provider.saveUser(key, user.toJson());
+
+       @override
+  Future<bool> removeUser(String key) async =>
+      await _provider.deleteUser(key);
 }

@@ -37,6 +37,7 @@ import '../features/offers/data/repositories/offer_repository_impl.dart'
 import '../features/offers/domain/repositories/offer_repository.dart' as _i19;
 import '../features/offers/domain/usecase/offer_usecase.dart' as _i21;
 import '../features/offers/presentation/bloc/offer_bloc.dart' as _i37;
+import '../features/profile/presentation/cubit/profile_cubit.dart' as _i38;
 import '../features/reserve_offer/data/datasources/reserve_offer_remote_datasource.dart'
     as _i22;
 import '../features/reserve_offer/data/repositories/reserve_offer_repository_impl.dart'
@@ -46,20 +47,20 @@ import '../features/reserve_offer/domain/repositories/reserve_offer_repository.d
 import '../features/reserve_offer/domain/usecases/reserve_offer_usecase.dart'
     as _i25;
 import '../features/reserve_offer/presentation/bloc/reserve_offer_bloc.dart'
-    as _i38;
+    as _i39;
 import '../features/splash/data/datasources/splash_datasource.dart' as _i26;
 import '../features/splash/data/repositories/splash_repository_impl.dart'
     as _i28;
 import '../features/splash/domain/repositories/splash_repository.dart' as _i27;
 import '../features/splash/domain/usecases/splash_usecase.dart' as _i29;
-import '../features/splash/presentation/cubit/splash_cubit.dart' as _i39;
+import '../features/splash/presentation/cubit/splash_cubit.dart' as _i40;
 import '../features/user/data/datasources/user_local_datasource.dart' as _i30;
 import '../features/user/data/datasources/user_remote_datasource.dart' as _i31;
 import '../features/user/data/repositories/user_repository_impl.dart' as _i33;
 import '../features/user/domain/repositories/user_repository.dart' as _i32;
 import '../features/user/domain/usecases/user_usecase.dart' as _i34;
 import 'injectable_modules.dart'
-    as _i40; // ignore_for_file: unnecessary_lambdas
+    as _i41; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -132,12 +133,14 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
   gh.factory<_i37.OfferBloc>(() => _i37.OfferBloc(
       offerUsecase: get<_i21.OfferUsecase>(),
       userUsecase: get<_i34.UserUsecase>()));
-  gh.factory<_i38.ReserveOfferBloc>(() => _i38.ReserveOfferBloc(
+  gh.factory<_i38.ProfileCubit>(
+      () => _i38.ProfileCubit(get<_i34.UserUsecase>()));
+  gh.factory<_i39.ReserveOfferBloc>(() => _i39.ReserveOfferBloc(
       reserveUsecase: get<_i25.ReserveOfferUsecase>(),
       userUsecase: get<_i34.UserUsecase>()));
-  gh.factory<_i39.SplashCubit>(
-      () => _i39.SplashCubit(get<_i29.SplashUsecase>()));
+  gh.factory<_i40.SplashCubit>(
+      () => _i40.SplashCubit(get<_i29.SplashUsecase>()));
   return get;
 }
 
-class _$InjectableModules extends _i40.InjectableModules {}
+class _$InjectableModules extends _i41.InjectableModules {}

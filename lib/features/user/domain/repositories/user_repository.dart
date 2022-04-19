@@ -5,6 +5,7 @@ import 'package:mady/features/user/domain/entities/user.dart';
 
 abstract class UserRepository {
   Future<Either<Failure, User>> getUser(String key);
+  Future<Either<Failure, bool>> removeUser(String key);
   Future<Either<Failure, bool>> saveUser(String key, User user);
   Future<Either<Failure, bool>> updateLocationAndSave(
       ApiParam params, String key, User user);

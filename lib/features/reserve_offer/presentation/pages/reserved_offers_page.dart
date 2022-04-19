@@ -24,12 +24,28 @@ class ReservedOffersPage extends StatelessWidget {
               initial: () => buildText(''),
               loading: () => buildLoading(),
               loaded: (offer, isReserved) => buildText(''),
-              error: (error) => buildText(error),
+              error: (error) => buildError(context, error),
               reservered: (reserves) => buildBody(context, reserves));
         },
       ),
     ));
   }
+
+  Widget buildError(BuildContext context, String message) => Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(message, style: Theme.of(context).textTheme.headline6),
+            const SizedBox(height: 10),
+            TextButton(
+              child: const Text('تلاش مجدد'),
+              onPressed: () => context
+                  .read<ReserveOfferBloc>()
+                  .add(const ReserveOfferEvent.getReserves()),
+            ),
+          ],
+        ),
+      );
 
   Future<void> getReserves(BuildContext context) async {
     BlocProvider.of<ReserveOfferBloc>(context)
@@ -70,15 +86,14 @@ class ReserveListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(4.0),
+      padding: const EdgeInsets.only(top: 4.0, left: 4.0, right: 4.0),
       child: Card(
-        elevation: 10,
-        shadowColor: Colors.purple.shade800,
+        elevation: 5,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15.0),
         ),
         child: ExpansionTile(
-          tilePadding: const EdgeInsets.all(8.0),
+          tilePadding: const EdgeInsets.symmetric(horizontal: 8.0),
           expandedCrossAxisAlignment: CrossAxisAlignment.stretch,
           childrenPadding: const EdgeInsets.only(
               left: 16.0, right: 16.0, bottom: 16.0, top: 0),

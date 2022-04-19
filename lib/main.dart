@@ -5,6 +5,7 @@ import 'package:mady/core/utils/theme.dart';
 import 'package:mady/di/injection.dart';
 import 'package:mady/features/login/presentation/pages/login_page.dart';
 import 'package:mady/features/near_offers/presentation/pages/select_address_page.dart';
+import 'package:mady/features/profile/presentation/pages/profile_page.dart';
 import 'package:mady/features/reserve_offer/domain/entities/reserve/reserve.dart';
 import 'package:mady/features/reserve_offer/presentation/pages/reserve_details_page.dart';
 import 'package:mady/features/user/domain/entities/user.dart';
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
           LoginPage.id: (context) => const LoginPage(),
           MainPage.id: (context) => const MainPage(),
           ReserveOfferPage.id: (context) => ReserveOfferPage(),
+          ProfilePage.id: (context) => const ProfilePage(),
         },
         onGenerateRoute: (settings) {
           if (settings.name == SellectAddressPage.id) {

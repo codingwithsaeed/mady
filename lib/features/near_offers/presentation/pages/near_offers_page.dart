@@ -48,12 +48,9 @@ class _OffersPageImplState extends State<OffersPageImpl>
   Widget build(BuildContext context) {
     super.build(context);
     return Scaffold(
-      body: RefreshIndicator(
-        onRefresh: () async => refreshData(),
-        child: BlocConsumer<NearOffersCubit, NearOffersState>(
-          listener: cubitListener,
-          builder: cubitBuilder,
-        ),
+      body: BlocConsumer<NearOffersCubit, NearOffersState>(
+        listener: cubitListener,
+        builder: cubitBuilder,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
@@ -80,23 +77,40 @@ class _OffersPageImplState extends State<OffersPageImpl>
           loaded: (offers) => offers.isEmpty
               ? buildEmptyBody('آفری در ۱۰ کیلومتری شما وجود ندارد')
               : buildOffersList(context, offers),
-          error: (error) => buildEmptyBody(error));
+          error: (error) => buildError(error));
 
   void cubitListener(context, state) {
     if (state is Error) showSnackbar(context, message: state.message);
   }
 
+  Widget buildError(String message) => Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(message, style: Theme.of(context).textTheme.headline6),
+            const SizedBox(height: 10),
+            TextButton(
+              child: const Text('تلاش مجدد'),
+              onPressed: () => context.read<NearOffersCubit>().getOffers(),
+            ),
+          ],
+        ),
+      );
+
   Widget buildOffersList(BuildContext context, List<Offer> offers) {
     return Padding(
       padding: const EdgeInsets.all(4.0),
-      child: GridView.builder(
-        itemCount: offers.length,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2, crossAxisSpacing: 2.0, mainAxisSpacing: 2.0),
-        itemBuilder: (BuildContext context, int index) => NearOfferItem(
-          onTap: () => Navigator.pushNamed(context, ReserveOfferPage.id,
-              arguments: offers[index]),
-          offer: offers[index],
+      child: RefreshIndicator(
+        onRefresh: () async => refreshData(),
+        child: GridView.builder(
+          itemCount: offers.length,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2, crossAxisSpacing: 2.0, mainAxisSpacing: 2.0),
+          itemBuilder: (BuildContext context, int index) => NearOfferItem(
+            onTap: () => Navigator.pushNamed(context, ReserveOfferPage.id,
+                arguments: offers[index]),
+            offer: offers[index],
+          ),
         ),
       ),
     );
