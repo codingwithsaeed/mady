@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mady/core/utils/consts.dart';
 import 'package:mady/core/utils/show_snackbar.dart';
 import 'package:mady/di/injection.dart';
 import 'package:mady/features/login/presentation/pages/login_page.dart';
@@ -138,7 +137,7 @@ class ProfilePage extends StatelessWidget {
                 style: TextStyle(color: Colors.yellow.shade800),
               )),
           TextButton(
-              onPressed: () => context.read<ProfileCubit>().logout(),
+              onPressed: () => context.read<ProfileCubit>().logout(user),
               child: Text(
                 'خروج از حساب کاربری',
                 style: TextStyle(color: Colors.red.shade800),

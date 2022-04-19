@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:mady/core/errors/failure.dart';
 import 'package:mady/core/utils/consts.dart';
+import 'package:mady/features/user/domain/entities/user.dart';
 import 'package:mady/features/user/domain/usecases/user_usecase.dart';
 
 import 'profile_state.dart';
@@ -22,16 +23,16 @@ class ProfileCubit extends Cubit<ProfileState> {
     );
   }
 
-  Future<void> logout() async {
+  Future<void> logout(User current) async {
     emit(const Loading());
     final user = await _usecase.removeUser(userKey);
     user.fold(
-      (error) => emit(Error((error as GeneralFailure).message)),
+      (error) => emit(LoadedWithError(current ,(error as GeneralFailure).message)),
       (removed) {
         if (removed)
           emit(const Logout());
         else
-          emit(const Error('مشکل در فرآیند خروج'));
+          emit(LoadedWithError(current, 'مشکل در فرآیند خروج'));
       },
     );
   }
