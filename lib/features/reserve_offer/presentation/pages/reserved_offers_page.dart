@@ -25,7 +25,7 @@ class ReservedOffersPage extends StatelessWidget {
               loading: () => buildLoading(),
               loaded: (offer, isReserved) => buildText(''),
               error: (error) => buildError(context, error),
-              reservered: (reserves) => buildBody(context, reserves));
+              reservered: (reserves) => reserves.isEmpty ? buildText('هیچ رزروی نداشته اید') :  buildBody(context, reserves));
         },
       ),
     ));

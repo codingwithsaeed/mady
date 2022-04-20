@@ -12,7 +12,7 @@ final currentDataUrl = Uri.parse(_onlineUrl);
 
 abstract class ApiProvider {
   ///Performs a POST request to given url
-  ///throws a [ServerException] on all errors 
+  ///throws a [ServerException] on all errors
   Future<Response> post(Uri url, {required Map<String, dynamic> params});
 }
 
